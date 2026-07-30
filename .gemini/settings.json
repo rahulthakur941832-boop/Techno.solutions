@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "novamira-techno-solutions": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@automattic/mcp-wordpress-remote@latest"
+      ],
+      "env": {
+        "WP_API_URL": "http://techno-solutions.local/wp-json/mcp/novamira",
+        "WP_API_USERNAME": "Techno",
+        "WP_API_PASSWORD": "D1WyrFACJxiVcM6Hu7r6kyfh"
+      }
+    },
+    "elementor-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://annual-albus-tr.zipwp.top/wp-json/mcp/elementor-mcp-server",
+        "--header",
+        "Authorization: Basic dGVqZ29tbDFqamxvOmxESWQgUnQwcCB4YnQ2IDZ5VW8gOEdHUCByWGY4"
+      ]
+    }
+  }
+}

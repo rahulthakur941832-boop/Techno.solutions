@@ -1,0 +1,467 @@
+Result: {
+  "content": [
+    {
+      "type": "text",
+      "text": "{\"post_id\":8,\"title\":\"Home\",\"type\":\"wp-page\",\"structure\":[{\"id\":\"db6d421\",\"elType\":\"e-flexbox\",\"elements\":[{\"id\":\"b834a09\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"TECHNO-SOLUTIONS\",\"link\":{\"url\":\"\\/\"},\"header_size\":\"h2\"}},{\"id\":\"73a7766\",\"elType\":\"widget\",\"widgetType\":\"icon-list\"},{\"id\":\"48b6b0f\",\"elType\":\"widget\",\"widgetType\":\"button\",\"settings_summary\":{\"text\":\"Book Consultation\",\"link\":{\"url\":\"\\/contact\\/\"}}}]},{\"id\":\"section_hero_01\",\"elType\":\"section\",\"elements\":[{\"id\":\"column_hero_01\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_hero_badge\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"TRANSFORM YOUR BUSINESS\",\"header_size\":\"div\"}},{\"id\":\"widget_hero_title\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"Transform Your Business with Intelligent Digital Solutions\",\"header_size\":\"h1\"}},{\"id\":\"widget_hero_keywords\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"Digital Transformation | Business Automation | AI | Blockchain | Solar | Smart Homes\",\"header_size\":\"h5\"}},{\"id\":\"widget_hero_text\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<p style='text-align: center; color: #E2E8F0; font-size: 16px; line-height: 1.6; max-width: 800px; m...\"}},{\"id\":\"widget_hero_buttons\",\"elType\":\"widget\",\"widgetType\":\"button\",\"settings_summary\":{\"text\":\"Book a Free Consultation\",\"link\":{\"url\":\"#contact\",\"is_external\":\"\",\"nofollow\":\"\"}}}]}]},{\"id\":\"section_about_02\",\"elType\":\"section\",\"elements\":[{\"id\":\"column_about_left\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_about_badge\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"YOUR TRUSTED TECHNOLOGY PARTNER\",\"header_size\":\"div\"}},{\"id\":\"widget_about_title\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"About Techno-Solutions\",\"header_size\":\"h2\"}},{\"id\":\"widget_about_content\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<p>Techno-Solutions is a leading Digital Transformation company helping organizations embrace the fu...\"}}]},{\"id\":\"column_about_right\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_consultant_box\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #F8F9FC; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px...\"}}]}]},{\"id\":\"section_services_03\",\"elType\":\"section\",\"elements\":[{\"id\":\"column_services_head\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_services_badge\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"EXPLORE OUR OFFERS\",\"header_size\":\"div\"}},{\"id\":\"widget_services_title\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"Digital Transformation Solutions\",\"header_size\":\"h2\"}}]}]},{\"id\":\"section_services_grid\",\"elType\":\"section\",\"elements\":[{\"id\":\"col_service_1\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_srv_1\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px...\"}}]},{\"id\":\"col_service_2\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_srv_2\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px...\"}}]},{\"id\":\"col_service_3\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_srv_3\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px...\"}}]}]},{\"id\":\"section_services_grid_row_2\",\"elType\":\"section\",\"elements\":[{\"id\":\"col_service_4\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_srv_4\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px...\"}}]},{\"id\":\"col_service_5\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_srv_5\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px...\"}}]},{\"id\":\"col_service_6\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_srv_6\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px...\"}}]}]},{\"id\":\"section_process_04\",\"elType\":\"section\",\"elements\":[{\"id\":\"column_process_all\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_proc_badge\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"6 STEPS TO TRANSFORMATION\",\"header_size\":\"div\"}},{\"id\":\"widget_proc_title\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"Our Working Process\",\"header_size\":\"h2\"}},{\"id\":\"widget_proc_timeline\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin-top: 4...\"}}]}]},{\"id\":\"section_contact_05\",\"elType\":\"section\",\"elements\":[{\"id\":\"col_contact_left\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_cnt_badge\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"GET IN TOUCH TODAY\",\"header_size\":\"div\"}},{\"id\":\"widget_cnt_title\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"Ready to Digitally Transform Your Business?\",\"header_size\":\"h2\"}},{\"id\":\"widget_cnt_text\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<p style='color: #E2E8F0; font-size: 15px;'>Whether you need business automation, AI implementation,...\"}}]},{\"id\":\"col_contact_right\",\"elType\":\"column\",\"elements\":[{\"id\":\"widget_wordpress_form_placeholder\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<div style='background-color: #FFFFFF; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px r...\"}}]}]},{\"id\":\"1b29681\",\"elType\":\"e-flexbox\",\"elements\":[{\"id\":\"510c28b\",\"elType\":\"e-flexbox\",\"elements\":[{\"id\":\"770164a\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"TECHNO-SOLUTIONS\",\"header_size\":\"h2\"}},{\"id\":\"88c6a3b\",\"elType\":\"widget\",\"widgetType\":\"text-editor\",\"settings_summary\":{\"editor\":\"<p style=\\\"color: #ffffff; opacity: 0.8; font-size: 13px; line-height: 1.6; margin-top: 10px;\\\">Empowe...\"}}]},{\"id\":\"bb15a10\",\"elType\":\"e-flexbox\",\"elements\":[{\"id\":\"72153b6\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"SOLUTIONS\",\"header_size\":\"h2\"}},{\"id\":\"a700199\",\"elType\":\"widget\",\"widgetType\":\"icon-list\"}]},{\"id\":\"f41150f\",\"elType\":\"e-flexbox\",\"elements\":[{\"id\":\"ef1d28a\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"QUICK LINKS\",\"header_size\":\"h2\"}},{\"id\":\"33a85c2\",\"elType\":\"widget\",\"widgetType\":\"icon-list\"}]},{\"id\":\"6f363b1\",\"elType\":\"e-flexbox\",\"elements\":[{\"id\":\"c80cd67\",\"elType\":\"widget\",\"widgetType\":\"heading\",\"settings_summary\":{\"title\":\"GET IN TOUCH\",\"header_size\":\"h2\"}},{\"id\":\"b1d3e82\",\"elType\":\"widget\",\"widgetType\":\"icon-list\"}]}]}]}"
+    }
+  ],
+  "structuredContent": {
+    "post_id": 8,
+    "title": "Home",
+    "type": "wp-page",
+    "structure": [
+      {
+        "id": "db6d421",
+        "elType": "e-flexbox",
+        "elements": [
+          {
+            "id": "b834a09",
+            "elType": "widget",
+            "widgetType": "heading",
+            "settings_summary": {
+              "title": "TECHNO-SOLUTIONS",
+              "link": {
+                "url": "/"
+              },
+              "header_size": "h2"
+            }
+          },
+          {
+            "id": "73a7766",
+            "elType": "widget",
+            "widgetType": "icon-list"
+          },
+          {
+            "id": "48b6b0f",
+            "elType": "widget",
+            "widgetType": "button",
+            "settings_summary": {
+              "text": "Book Consultation",
+              "link": {
+                "url": "/contact/"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "section_hero_01",
+        "elType": "section",
+        "elements": [
+          {
+            "id": "column_hero_01",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_hero_badge",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "TRANSFORM YOUR BUSINESS",
+                  "header_size": "div"
+                }
+              },
+              {
+                "id": "widget_hero_title",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "Transform Your Business with Intelligent Digital Solutions",
+                  "header_size": "h1"
+                }
+              },
+              {
+                "id": "widget_hero_keywords",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "Digital Transformation | Business Automation | AI | Blockchain | Solar | Smart Homes",
+                  "header_size": "h5"
+                }
+              },
+              {
+                "id": "widget_hero_text",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<p style='text-align: center; color: #E2E8F0; font-size: 16px; line-height: 1.6; max-width: 800px; m..."
+                }
+              },
+              {
+                "id": "widget_hero_buttons",
+                "elType": "widget",
+                "widgetType": "button",
+                "settings_summary": {
+                  "text": "Book a Free Consultation",
+                  "link": {
+                    "url": "#contact",
+                    "is_external": "",
+                    "nofollow": ""
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section_about_02",
+        "elType": "section",
+        "elements": [
+          {
+            "id": "column_about_left",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_about_badge",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "YOUR TRUSTED TECHNOLOGY PARTNER",
+                  "header_size": "div"
+                }
+              },
+              {
+                "id": "widget_about_title",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "About Techno-Solutions",
+                  "header_size": "h2"
+                }
+              },
+              {
+                "id": "widget_about_content",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<p>Techno-Solutions is a leading Digital Transformation company helping organizations embrace the fu..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "column_about_right",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_consultant_box",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #F8F9FC; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px..."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section_services_03",
+        "elType": "section",
+        "elements": [
+          {
+            "id": "column_services_head",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_services_badge",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "EXPLORE OUR OFFERS",
+                  "header_size": "div"
+                }
+              },
+              {
+                "id": "widget_services_title",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "Digital Transformation Solutions",
+                  "header_size": "h2"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section_services_grid",
+        "elType": "section",
+        "elements": [
+          {
+            "id": "col_service_1",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_srv_1",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "col_service_2",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_srv_2",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "col_service_3",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_srv_3",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px..."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section_services_grid_row_2",
+        "elType": "section",
+        "elements": [
+          {
+            "id": "col_service_4",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_srv_4",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "col_service_5",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_srv_5",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "col_service_6",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_srv_6",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 24px..."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section_process_04",
+        "elType": "section",
+        "elements": [
+          {
+            "id": "column_process_all",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_proc_badge",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "6 STEPS TO TRANSFORMATION",
+                  "header_size": "div"
+                }
+              },
+              {
+                "id": "widget_proc_title",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "Our Working Process",
+                  "header_size": "h2"
+                }
+              },
+              {
+                "id": "widget_proc_timeline",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin-top: 4..."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "section_contact_05",
+        "elType": "section",
+        "elements": [
+          {
+            "id": "col_contact_left",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_cnt_badge",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "GET IN TOUCH TODAY",
+                  "header_size": "div"
+                }
+              },
+              {
+                "id": "widget_cnt_title",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "Ready to Digitally Transform Your Business?",
+                  "header_size": "h2"
+                }
+              },
+              {
+                "id": "widget_cnt_text",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<p style='color: #E2E8F0; font-size: 15px;'>Whether you need business automation, AI implementation,..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "col_contact_right",
+            "elType": "column",
+            "elements": [
+              {
+                "id": "widget_wordpress_form_placeholder",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<div style='background-color: #FFFFFF; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px r..."
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "1b29681",
+        "elType": "e-flexbox",
+        "elements": [
+          {
+            "id": "510c28b",
+            "elType": "e-flexbox",
+            "elements": [
+              {
+                "id": "770164a",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "TECHNO-SOLUTIONS",
+                  "header_size": "h2"
+                }
+              },
+              {
+                "id": "88c6a3b",
+                "elType": "widget",
+                "widgetType": "text-editor",
+                "settings_summary": {
+                  "editor": "<p style=\"color: #ffffff; opacity: 0.8; font-size: 13px; line-height: 1.6; margin-top: 10px;\">Empowe..."
+                }
+              }
+            ]
+          },
+          {
+            "id": "bb15a10",
+            "elType": "e-flexbox",
+            "elements": [
+              {
+                "id": "72153b6",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "SOLUTIONS",
+                  "header_size": "h2"
+                }
+              },
+              {
+                "id": "a700199",
+                "elType": "widget",
+                "widgetType": "icon-list"
+              }
+            ]
+          },
+          {
+            "id": "f41150f",
+            "elType": "e-flexbox",
+            "elements": [
+              {
+                "id": "ef1d28a",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "QUICK LINKS",
+                  "header_size": "h2"
+                }
+              },
+              {
+                "id": "33a85c2",
+                "elType": "widget",
+                "widgetType": "icon-list"
+              }
+            ]
+          },
+          {
+            "id": "6f363b1",
+            "elType": "e-flexbox",
+            "elements": [
+              {
+                "id": "c80cd67",
+                "elType": "widget",
+                "widgetType": "heading",
+                "settings_summary": {
+                  "title": "GET IN TOUCH",
+                  "header_size": "h2"
+                }
+              },
+              {
+                "id": "b1d3e82",
+                "elType": "widget",
+                "widgetType": "icon-list"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "isError": false
+}

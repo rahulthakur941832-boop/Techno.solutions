@@ -1,0 +1,25 @@
+MCP Client Created
+[LOG] Spawning MCP-remote process...
+[LOG] Sending initialize request...
+[LOG] STDERR: [1165] Using automatically selected callback port: 29059
+[1165] Using custom headers: {"Authorization":"Basic dGVqZ29tbDFqamxvOmxESWQgUnQwcCB4YnQ2IDZ5VW8gOEdHUCByWGY4","Cookie":"zipwp_access=abc123xyz789"}
+[1165] Discovering OAuth server configuration...
+
+[LOG] STDERR: [1165] [1165] Connecting to remote server: https://annual-albus-tr.zipwp.top/wp-json/mcp/elementor-mcp-server
+
+[LOG] STDERR: [1165] Using transport strategy: http-first
+
+[LOG] STDERR: [1165] Connection error: StreamableHTTPError: Streamable HTTP error: Unexpected content type: text/html; charset=UTF-8
+    at StreamableHTTPClientTransport.send (file:///opt/npm-cache/_npx/705d23756ff7dacc/node_modules/mcp-remote/dist/chunk-65X3S4HB.js:19922:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  code: -1
+}
+
+[LOG] STDERR: [1165] Fatal error: StreamableHTTPError: Streamable HTTP error: Unexpected content type: text/html; charset=UTF-8
+    at StreamableHTTPClientTransport.send (file:///opt/npm-cache/_npx/705d23756ff7dacc/node_modules/mcp-remote/dist/chunk-65X3S4HB.js:19922:17)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5) {
+  code: -1
+}
+
+[LOG] MCP process closed with code 1
+[LOG] Closing MCP Client connection...

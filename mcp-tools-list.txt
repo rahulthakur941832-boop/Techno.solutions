@@ -1,0 +1,5282 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "tools": [
+      {
+        "name": "elementor-mcp-list-widgets",
+        "title": "List Elementor Widgets",
+        "description": "Returns all registered Elementor widget types with their names, titles, icons, categories, and keywords. Optionally filter by widget category.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "description": "Filter widgets by category slug."
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "widgets": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "icon": {
+                    "type": "string"
+                  },
+                  "categories": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "keywords": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "List Elementor Widgets",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-get-widget-schema",
+        "title": "Get Widget Schema",
+        "description": "Returns the full JSON Schema for a widget type's settings, describing all available controls and their types. Use this to discover what settings a widget accepts before creating or updating it.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "widget_type": {
+              "type": "string",
+              "description": "The widget type name, e.g. \"heading\", \"button\", \"image\"."
+            }
+          },
+          "required": [
+            "widget_type"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "widget_type": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            },
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Get Widget Schema",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-get-container-schema",
+        "title": "Get Container Schema",
+        "description": "Returns JSON Schema for all container controls (flex + grid), including flex_direction, justify_content, align_items, flex_wrap, gap, content_width, min_height, container_type, grid controls, background, border, padding, and more.",
+        "inputSchema": {
+          "type": "object"
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Get Container Schema",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-get-page-structure",
+        "title": "Get Page Structure",
+        "description": "Returns the element tree for an Elementor page, showing all containers, widgets, and their nesting structure. Each element includes its ID, type, widget type (for widgets), and child elements.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The WordPress post/page ID."
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "structure": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "Get Page Structure",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-get-element-settings",
+        "title": "Get Element Settings",
+        "description": "Returns the current settings for a specific element on a page. Provide the post ID and element ID to retrieve all control values for that element.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The WordPress post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The Elementor element ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            },
+            "elType": {
+              "type": "string"
+            },
+            "widgetType": {
+              "type": "string"
+            },
+            "settings": {
+              "type": "object"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Get Element Settings",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-find-element",
+        "title": "Find Element",
+        "description": "Searches elements on a page by type, widget type, or settings content. Returns matching element IDs, types, and a settings preview.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID to search."
+            },
+            "widget_type": {
+              "type": "string",
+              "description": "Filter by widget type (e.g. \"heading\", \"button\"). Leave empty for all."
+            },
+            "element_type": {
+              "type": "string",
+              "enum": [
+                "container",
+                "widget"
+              ],
+              "description": "Filter by element type."
+            },
+            "search_text": {
+              "type": "string",
+              "description": "Search for text content in settings values (case-insensitive)."
+            },
+            "setting_key": {
+              "type": "string",
+              "description": "Filter by setting key existence (e.g. \"title_color\")."
+            },
+            "setting_value": {
+              "type": "string",
+              "description": "Filter by setting value (requires setting_key)."
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "matches": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "element_id": {
+                    "type": "string"
+                  },
+                  "elType": {
+                    "type": "string"
+                  },
+                  "widgetType": {
+                    "type": "string"
+                  },
+                  "settings_preview": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "count": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Find Element",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-list-pages",
+        "title": "List Elementor Pages",
+        "description": "Returns all WordPress pages and posts that are built with Elementor. Optionally filter by post type and status.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_type": {
+              "type": "string",
+              "description": "Filter by post type (e.g. \"page\", \"post\"). Default: any."
+            },
+            "status": {
+              "type": "string",
+              "description": "Filter by post status (e.g. \"publish\", \"draft\"). Default: any."
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "pages": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "post_id": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "modified": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "List Elementor Pages",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-list-templates",
+        "title": "List Elementor Templates",
+        "description": "Returns all saved Elementor templates from the template library. Optionally filter by template type (page, section, container).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "template_type": {
+              "type": "string",
+              "description": "Filter by template type (e.g. \"page\", \"section\", \"container\")."
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "templates": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "List Elementor Templates",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-get-global-settings",
+        "title": "Get Global Settings",
+        "description": "Returns the active Elementor kit/global settings including colors, typography, spacing, and breakpoints. These are the site-wide design tokens used across all pages.",
+        "inputSchema": {
+          "type": "object"
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "colors": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "typography": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            },
+            "settings": {
+              "type": "object"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Get Global Settings",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-create-page",
+        "title": "Create Elementor Page",
+        "description": "Creates a new WordPress page with Elementor enabled. Optionally provide initial element content.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Page title."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "publish"
+              ],
+              "description": "Post status. Default: draft."
+            },
+            "post_type": {
+              "type": "string",
+              "enum": [
+                "page",
+                "post"
+              ],
+              "description": "Post type. Default: page."
+            },
+            "template": {
+              "type": "string",
+              "description": "Elementor template slug."
+            },
+            "content": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "Initial element tree."
+            }
+          },
+          "required": [
+            "title"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "edit_url": {
+              "type": "string"
+            },
+            "preview_url": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Create Elementor Page",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-update-page-settings",
+        "title": "Update Page Settings",
+        "description": "Updates page-level Elementor settings such as background, padding, custom CSS, and layout options.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Page settings object."
+            }
+          },
+          "required": [
+            "post_id",
+            "settings"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "post_id": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Update Page Settings",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-delete-page-content",
+        "title": "Delete Page Content",
+        "description": "Clears all Elementor content from a page, resetting it to blank while keeping the page itself.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Delete Page Content",
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-import-template",
+        "title": "Import Template",
+        "description": "Imports a JSON template structure into a page at an optional position.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "template_json": {
+              "type": "array",
+              "description": "Elementor JSON element structure to import.",
+              "items": {
+                "type": "object"
+              }
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            }
+          },
+          "required": [
+            "post_id",
+            "template_json"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "elements_count": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Import Template",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-export-page",
+        "title": "Export Page",
+        "description": "Exports a page's full Elementor data as a JSON structure that can be imported elsewhere.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "json": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "Export Page",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-add-container",
+        "title": "Add Container",
+        "description": "Adds a container to a page. Supports both flex (default) and grid layouts via container_type. Omit parent_id for top-level, or provide a parent container ID for nesting. Flex tips: Use flex_direction=row for side-by-side children, flex_wrap=wrap for wrapping, flex_justify_content for main-axis alignment (e.g. space-between, center), flex_align_items for cross-axis alignment. (The shorthand justify_content / align_items are also accepted and remapped to flex_justify_content / flex_align_items.) Grid tips: Set container_type=grid with grid_columns_grid, grid_rows_grid, grid_gaps. Background: set background_background=classic and background_color=#hex. Border: set border_border=solid, border_width, border_color. Also supports min_height, overflow, html_tag, padding, margin, position, z_index, animation.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container ID for nesting. Omit for top-level."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append (default)."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Container settings: flex_direction, flex_wrap, flex_justify_content, flex_align_items, gap, content_width, padding, margin, background, border, etc. (Unprefixed justify_content / align_items / align_content are accepted and remapped to the flex_-prefixed keys.)"
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            },
+            "post_id": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Container",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-update-container",
+        "title": "Update Container",
+        "description": "Updates settings on an existing container. Settings are merged (partial update). Supports all container controls: flex_direction, flex_justify_content, flex_align_items, flex_wrap, flex_align_content, gap, content_width, min_height, overflow, html_tag, container_type, grid controls, background (set background_background=classic first), border (set border_border=solid first), border_radius, box_shadow, padding, margin, position, z_index, animation, shape dividers, etc. (The unprefixed justify_content / align_items / align_content are accepted and remapped to the flex_-prefixed keys.)",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The container element ID."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Partial settings to merge into the container."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id",
+            "settings"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Update Container",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-update-element",
+        "title": "Update Element",
+        "description": "Updates settings on any element (container or widget). Settings are merged (partial update). Works for all element types — no need to know if the target is a container or widget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The element ID (container or widget)."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Partial settings to merge into the element."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id",
+            "settings"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "element_id": {
+              "type": "string"
+            },
+            "element_type": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Update Element",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-batch-update",
+        "title": "Batch Update Elements",
+        "description": "Updates multiple elements in a single save operation. Each operation specifies an element_id and settings to merge. Much more efficient than calling update-element multiple times.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "operations": {
+              "type": "array",
+              "description": "Array of update operations.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "element_id": {
+                    "type": "string",
+                    "description": "Element ID to update."
+                  },
+                  "settings": {
+                    "type": "object",
+                    "description": "Settings to merge."
+                  }
+                },
+                "required": [
+                  "element_id",
+                  "settings"
+                ]
+              }
+            }
+          },
+          "required": [
+            "post_id",
+            "operations"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "updated": {
+              "type": "integer"
+            },
+            "failed": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "Batch Update Elements",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-reorder-elements",
+        "title": "Reorder Elements",
+        "description": "Reorders the children of a container by providing an ordered array of element IDs. All IDs must be direct children of the specified container.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "container_id": {
+              "type": "string",
+              "description": "The parent container element ID."
+            },
+            "element_ids": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Ordered array of child element IDs in the desired order."
+            }
+          },
+          "required": [
+            "post_id",
+            "container_id",
+            "element_ids"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Reorder Elements",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-move-element",
+        "title": "Move Element",
+        "description": "Moves an element to a new parent container and/or position within the page tree.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The element ID to move."
+            },
+            "target_parent_id": {
+              "type": "string",
+              "description": "Target parent container ID. Empty string for top-level."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Position within target parent. -1 = append."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id",
+            "target_parent_id",
+            "position"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Move Element",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-remove-element",
+        "title": "Remove Element",
+        "description": "Removes an element and all its children from a page.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The element ID to remove."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Remove Element",
+          "readOnlyHint": false,
+          "destructiveHint": true,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-duplicate-element",
+        "title": "Duplicate Element",
+        "description": "Duplicates an element (including all children) with fresh IDs. The duplicate is placed immediately after the original.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The element ID to duplicate."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "new_element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Duplicate Element",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-widget",
+        "title": "Add Widget",
+        "description": "Adds any Elementor widget to a container. Use get-widget-schema to discover the available settings for each widget type.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "widget_type": {
+              "type": "string",
+              "description": "The widget type name (e.g. \"heading\", \"button\", \"image\")."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Widget-specific settings."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "widget_type"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            },
+            "widget_type": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Widget",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-update-widget",
+        "title": "Update Widget",
+        "description": "Updates settings on an existing widget. Settings are merged (partial update).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The widget element ID."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Partial settings to merge."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id",
+            "settings"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Update Widget",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-add-heading",
+        "title": "Add Heading",
+        "description": "Adds a heading widget. Supports full typography (set typography_typography=custom first), text stroke, text shadow, blend mode, hover color. Also accepts responsive suffixes (align_tablet, align_mobile) and common advanced controls (_margin, _padding, _background_*, _border_*, etc).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "title": {
+              "type": "string",
+              "description": "Heading text."
+            },
+            "header_size": {
+              "type": "string",
+              "enum": [
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6",
+                "div",
+                "span",
+                "p"
+              ],
+              "description": "HTML tag. Default: h2."
+            },
+            "size": {
+              "type": "string",
+              "enum": [
+                "default",
+                "small",
+                "medium",
+                "large",
+                "xl",
+                "xxl"
+              ],
+              "description": "Elementor size preset."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right",
+                "justify"
+              ],
+              "description": "Text alignment. Responsive: align_tablet, align_mobile."
+            },
+            "title_color": {
+              "type": "string",
+              "description": "Heading color (hex/rgba)."
+            },
+            "title_hover_color": {
+              "type": "string",
+              "description": "Heading hover color (hex/rgba)."
+            },
+            "link": {
+              "type": "object",
+              "description": "Link: {url, is_external, nofollow}."
+            },
+            "blend_mode": {
+              "type": "string",
+              "enum": [
+                "multiply",
+                "screen",
+                "overlay",
+                "darken",
+                "lighten",
+                "color-dodge",
+                "saturation",
+                "color",
+                "difference",
+                "exclusion",
+                "hue",
+                "luminosity"
+              ],
+              "description": "CSS blend mode."
+            },
+            "typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable typography controls."
+            },
+            "typography_font_family": {
+              "type": "string",
+              "description": "Font family (e.g. \"Roboto\", \"Montserrat\")."
+            },
+            "typography_font_size": {
+              "type": "object",
+              "description": "Font size: {size, unit}. Units: px, em, rem, vw."
+            },
+            "typography_font_weight": {
+              "type": "string",
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900",
+                "normal",
+                "bold"
+              ],
+              "description": "Font weight."
+            },
+            "typography_text_transform": {
+              "type": "string",
+              "enum": [
+                "uppercase",
+                "lowercase",
+                "capitalize",
+                "none"
+              ],
+              "description": "Text transform."
+            },
+            "typography_font_style": {
+              "type": "string",
+              "enum": [
+                "normal",
+                "italic",
+                "oblique"
+              ],
+              "description": "Font style."
+            },
+            "typography_text_decoration": {
+              "type": "string",
+              "enum": [
+                "none",
+                "underline",
+                "overline",
+                "line-through"
+              ],
+              "description": "Text decoration."
+            },
+            "typography_line_height": {
+              "type": "object",
+              "description": "Line height: {size, unit}. Units: px, em."
+            },
+            "typography_letter_spacing": {
+              "type": "object",
+              "description": "Letter spacing: {size, unit}. Units: px, em."
+            },
+            "typography_word_spacing": {
+              "type": "object",
+              "description": "Word spacing: {size, unit}."
+            },
+            "text_stroke_text_stroke": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Enable text stroke."
+            },
+            "text_stroke_stroke_width": {
+              "type": "object",
+              "description": "Stroke width: {size, unit}."
+            },
+            "text_stroke_stroke_color": {
+              "type": "string",
+              "description": "Stroke color (hex/rgba)."
+            },
+            "title_text_shadow_text_shadow": {
+              "type": "object",
+              "description": "Text shadow: {horizontal, vertical, blur, color}."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "title"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Heading",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-text-editor",
+        "title": "Add Text Editor",
+        "description": "Adds a rich text editor widget. Supports typography (set typography_typography=custom), drop cap, text columns, and text color. Accepts responsive suffixes and advanced controls.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "editor": {
+              "type": "string",
+              "description": "HTML content."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right",
+                "justify"
+              ],
+              "description": "Text alignment. Responsive: align_tablet, align_mobile."
+            },
+            "text_color": {
+              "type": "string",
+              "description": "Text color (hex/rgba)."
+            },
+            "drop_cap": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Enable drop cap on first letter."
+            },
+            "column_gap": {
+              "type": "object",
+              "description": "Column gap: {size, unit}. Works with text_columns."
+            },
+            "text_columns": {
+              "type": "string",
+              "description": "Number of text columns (1-10)."
+            },
+            "typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable typography controls."
+            },
+            "typography_font_family": {
+              "type": "string",
+              "description": "Font family."
+            },
+            "typography_font_size": {
+              "type": "object",
+              "description": "Font size: {size, unit}."
+            },
+            "typography_font_weight": {
+              "type": "string",
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900",
+                "normal",
+                "bold"
+              ],
+              "description": "Font weight."
+            },
+            "typography_text_transform": {
+              "type": "string",
+              "enum": [
+                "uppercase",
+                "lowercase",
+                "capitalize",
+                "none"
+              ],
+              "description": "Text transform."
+            },
+            "typography_line_height": {
+              "type": "object",
+              "description": "Line height: {size, unit}."
+            },
+            "typography_letter_spacing": {
+              "type": "object",
+              "description": "Letter spacing: {size, unit}."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "editor"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Text Editor",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-image",
+        "title": "Add Image",
+        "description": "Adds an image widget. Supports width, max-width, opacity, border, border-radius, box shadow, CSS filters (brightness, contrast, saturation, hue), and hover effects. Accepts responsive suffixes and advanced controls.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "image": {
+              "type": "object",
+              "description": "Image object with url (required) and optional id."
+            },
+            "image_size": {
+              "type": "string",
+              "enum": [
+                "thumbnail",
+                "medium",
+                "medium_large",
+                "large",
+                "full"
+              ],
+              "description": "Image size preset."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ],
+              "description": "Image alignment. Responsive: align_tablet, align_mobile."
+            },
+            "caption_source": {
+              "type": "string",
+              "enum": [
+                "none",
+                "attachment",
+                "custom"
+              ],
+              "description": "Caption source."
+            },
+            "caption": {
+              "type": "string",
+              "description": "Custom caption text."
+            },
+            "link_to": {
+              "type": "string",
+              "enum": [
+                "none",
+                "file",
+                "custom"
+              ],
+              "description": "Link behavior."
+            },
+            "link": {
+              "type": "object",
+              "description": "Link: {url, is_external, nofollow}."
+            },
+            "width": {
+              "type": "object",
+              "description": "Image width: {size, unit}. Units: px, %, vw."
+            },
+            "max_width": {
+              "type": "object",
+              "description": "Max width: {size, unit}."
+            },
+            "height": {
+              "type": "object",
+              "description": "Image height: {size, unit}."
+            },
+            "object_fit": {
+              "type": "string",
+              "enum": [
+                "fill",
+                "cover",
+                "contain"
+              ],
+              "description": "Object fit when height is set."
+            },
+            "opacity": {
+              "type": "object",
+              "description": "Image opacity: {size, unit}. 0-1 range."
+            },
+            "hover_animation": {
+              "type": "string",
+              "description": "Hover animation (grow, shrink, pulse, push, etc)."
+            },
+            "hover_opacity": {
+              "type": "object",
+              "description": "Hover opacity: {size, unit}. 0-1 range."
+            },
+            "css_filters_css_filter": {
+              "type": "string",
+              "enum": [
+                "custom"
+              ],
+              "description": "Set to \"custom\" to enable CSS filter controls."
+            },
+            "css_filters_blur": {
+              "type": "object",
+              "description": "Blur: {size, unit}. px."
+            },
+            "css_filters_brightness": {
+              "type": "object",
+              "description": "Brightness: {size, unit}. 0-200%."
+            },
+            "css_filters_contrast": {
+              "type": "object",
+              "description": "Contrast: {size, unit}. 0-200%."
+            },
+            "css_filters_saturate": {
+              "type": "object",
+              "description": "Saturation: {size, unit}. 0-200%."
+            },
+            "css_filters_hue": {
+              "type": "object",
+              "description": "Hue rotation: {size, unit}. 0-360deg."
+            },
+            "image_border_border": {
+              "type": "string",
+              "enum": [
+                "solid",
+                "double",
+                "dotted",
+                "dashed",
+                "groove"
+              ],
+              "description": "Border style."
+            },
+            "image_border_width": {
+              "type": "object",
+              "description": "Border width: {top, right, bottom, left, unit, isLinked}."
+            },
+            "image_border_color": {
+              "type": "string",
+              "description": "Border color."
+            },
+            "image_border_radius": {
+              "type": "object",
+              "description": "Border radius: {top, right, bottom, left, unit, isLinked}."
+            },
+            "image_box_shadow_box_shadow_type": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Enable box shadow."
+            },
+            "image_box_shadow_box_shadow": {
+              "type": "object",
+              "description": "Box shadow: {horizontal, vertical, blur, spread, color}."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "image"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Image",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-button",
+        "title": "Add Button",
+        "description": "Adds a button widget. Supports typography (set typography_typography=custom), border, background, hover colors, box shadow, and text shadow. Accepts responsive suffixes and advanced controls.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "text": {
+              "type": "string",
+              "description": "Button text."
+            },
+            "link": {
+              "type": "object",
+              "description": "Link: {url, is_external, nofollow}."
+            },
+            "size": {
+              "type": "string",
+              "enum": [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl"
+              ],
+              "description": "Button size."
+            },
+            "button_type": {
+              "type": "string",
+              "enum": [
+                "info",
+                "success",
+                "warning",
+                "danger"
+              ],
+              "description": "Button style type."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right",
+                "justify"
+              ],
+              "description": "Button alignment. Responsive: align_tablet, align_mobile."
+            },
+            "selected_icon": {
+              "type": "object",
+              "description": "Icon object with value and library."
+            },
+            "icon_align": {
+              "type": "string",
+              "enum": [
+                "row",
+                "row-reverse"
+              ],
+              "description": "Icon position."
+            },
+            "icon_indent": {
+              "type": "object",
+              "description": "Icon spacing: {size, unit}."
+            },
+            "button_text_color": {
+              "type": "string",
+              "description": "Text color (hex/rgba)."
+            },
+            "background_color": {
+              "type": "string",
+              "description": "Background color (hex/rgba)."
+            },
+            "hover_color": {
+              "type": "string",
+              "description": "Hover text color."
+            },
+            "button_background_hover_color": {
+              "type": "string",
+              "description": "Hover background color."
+            },
+            "hover_animation": {
+              "type": "string",
+              "description": "Hover animation (e.g. grow, shrink, pulse, push)."
+            },
+            "border_border": {
+              "type": "string",
+              "enum": [
+                "solid",
+                "double",
+                "dotted",
+                "dashed",
+                "groove"
+              ],
+              "description": "Border style."
+            },
+            "border_width": {
+              "type": "object",
+              "description": "Border width: {top, right, bottom, left, unit, isLinked}."
+            },
+            "border_color": {
+              "type": "string",
+              "description": "Border color."
+            },
+            "border_radius": {
+              "type": "object",
+              "description": "Border radius: {top, right, bottom, left, unit, isLinked}."
+            },
+            "button_box_shadow_box_shadow_type": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Enable box shadow."
+            },
+            "button_box_shadow_box_shadow": {
+              "type": "object",
+              "description": "Box shadow: {horizontal, vertical, blur, spread, color}."
+            },
+            "typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable typography controls."
+            },
+            "typography_font_family": {
+              "type": "string",
+              "description": "Font family."
+            },
+            "typography_font_size": {
+              "type": "object",
+              "description": "Font size: {size, unit}."
+            },
+            "typography_font_weight": {
+              "type": "string",
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900",
+                "normal",
+                "bold"
+              ],
+              "description": "Font weight."
+            },
+            "typography_text_transform": {
+              "type": "string",
+              "enum": [
+                "uppercase",
+                "lowercase",
+                "capitalize",
+                "none"
+              ],
+              "description": "Text transform."
+            },
+            "typography_letter_spacing": {
+              "type": "object",
+              "description": "Letter spacing: {size, unit}."
+            },
+            "text_shadow_text_shadow": {
+              "type": "object",
+              "description": "Text shadow: {horizontal, vertical, blur, color}."
+            },
+            "button_padding": {
+              "type": "object",
+              "description": "Button padding: {top, right, bottom, left, unit, isLinked}."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "text"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Button",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-video",
+        "title": "Add Video",
+        "description": "Adds a video widget. Supports YouTube, Vimeo, Dailymotion, self-hosted. Options: start/end time, lazy load, privacy mode, image overlay, play icon. Accepts responsive suffixes and advanced controls.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "video_type": {
+              "type": "string",
+              "enum": [
+                "youtube",
+                "vimeo",
+                "dailymotion",
+                "hosted"
+              ],
+              "description": "Video source type."
+            },
+            "youtube_url": {
+              "type": "string",
+              "description": "YouTube URL."
+            },
+            "vimeo_url": {
+              "type": "string",
+              "description": "Vimeo URL."
+            },
+            "dailymotion_url": {
+              "type": "string",
+              "description": "Dailymotion URL."
+            },
+            "insert_url": {
+              "type": "object",
+              "description": "Self-hosted video URL object: {url}."
+            },
+            "autoplay": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Autoplay on load."
+            },
+            "mute": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Mute audio."
+            },
+            "loop": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Loop video."
+            },
+            "controls": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Show player controls."
+            },
+            "start": {
+              "type": "integer",
+              "description": "Start time in seconds."
+            },
+            "end": {
+              "type": "integer",
+              "description": "End time in seconds."
+            },
+            "yt_privacy": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "YouTube privacy-enhanced mode."
+            },
+            "lazy_load": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Lazy load the video."
+            },
+            "rel": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Show related videos at end (YouTube)."
+            },
+            "modestbranding": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Modest branding (YouTube)."
+            },
+            "show_image_overlay": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Show image overlay (poster)."
+            },
+            "image_overlay": {
+              "type": "object",
+              "description": "Overlay image: {url, id}."
+            },
+            "show_play_icon": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Show play icon on overlay."
+            },
+            "aspect_ratio": {
+              "type": "string",
+              "enum": [
+                "169",
+                "219",
+                "43",
+                "32",
+                "11",
+                "916"
+              ],
+              "description": "Video aspect ratio. Values: 169=16:9, 219=21:9, 43=4:3, 32=3:2, 11=1:1, 916=9:16."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Video",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-icon",
+        "title": "Add Icon",
+        "description": "Adds an icon widget. Supports Font Awesome and SVG icons, view modes (default/stacked/framed), hover colors, rotate, padding, border radius, and hover animation. For SVG, first use upload-svg-icon.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "selected_icon": {
+              "type": "object",
+              "description": "Icon object. Font Awesome: { \"value\": \"fas fa-star\", \"library\": \"fa-solid\" }. SVG: { \"value\": { \"id\": 123, \"url\": \"...\" }, \"library\": \"svg\" }. Libraries: fa-solid, fa-regular, fa-brands."
+            },
+            "view": {
+              "type": "string",
+              "enum": [
+                "default",
+                "stacked",
+                "framed"
+              ],
+              "description": "Icon view mode."
+            },
+            "shape": {
+              "type": "string",
+              "enum": [
+                "circle",
+                "square"
+              ],
+              "description": "Icon shape (for stacked/framed)."
+            },
+            "primary_color": {
+              "type": "string",
+              "description": "Primary/icon color (hex/rgba)."
+            },
+            "secondary_color": {
+              "type": "string",
+              "description": "Secondary/background color for stacked/framed (hex/rgba)."
+            },
+            "hover_primary_color": {
+              "type": "string",
+              "description": "Hover icon color."
+            },
+            "hover_secondary_color": {
+              "type": "string",
+              "description": "Hover background color for stacked/framed."
+            },
+            "hover_animation": {
+              "type": "string",
+              "description": "Hover animation (grow, shrink, pulse, push, etc)."
+            },
+            "size": {
+              "type": "object",
+              "description": "Icon size: {size, unit}."
+            },
+            "icon_padding": {
+              "type": "object",
+              "description": "Icon padding: {size, unit}. For stacked/framed."
+            },
+            "rotate": {
+              "type": "object",
+              "description": "Icon rotation: {size, unit}. Degrees."
+            },
+            "border_width": {
+              "type": "object",
+              "description": "Border width for framed view: {size, unit}."
+            },
+            "border_radius": {
+              "type": "object",
+              "description": "Border radius: {size, unit}."
+            },
+            "link": {
+              "type": "object",
+              "description": "Link: {url, is_external, nofollow}."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ],
+              "description": "Icon alignment. Responsive: align_tablet, align_mobile."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Icon",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-spacer",
+        "title": "Add Spacer",
+        "description": "Adds a spacer widget for vertical spacing between elements.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "space": {
+              "type": "object",
+              "description": "Spacer height: { \"size\": 50, \"unit\": \"px\" }."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Spacer",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-divider",
+        "title": "Add Divider",
+        "description": "Adds a horizontal divider/separator widget with style, weight, color, and width options.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "style": {
+              "type": "string",
+              "enum": [
+                "solid",
+                "dashed",
+                "dotted",
+                "double"
+              ],
+              "description": "Divider line style."
+            },
+            "weight": {
+              "type": "object",
+              "description": "Line weight: { \"size\": 1, \"unit\": \"px\" }."
+            },
+            "color": {
+              "type": "string",
+              "description": "Divider color (hex)."
+            },
+            "width": {
+              "type": "object",
+              "description": "Divider width: { \"size\": 100, \"unit\": \"%\" }."
+            },
+            "gap": {
+              "type": "object",
+              "description": "Gap above/below: { \"size\": 15, \"unit\": \"px\" }."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Divider",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-icon-box",
+        "title": "Add Icon Box",
+        "description": "Adds an icon box widget. Supports icon position (top/left/right), title typography (set title_typography_typography=custom), description typography, icon spacing, hover colors, and hover animation. Accepts responsive suffixes and advanced controls.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "string",
+              "enum": [
+                "top",
+                "left",
+                "right"
+              ],
+              "description": "Icon position relative to content."
+            },
+            "selected_icon": {
+              "type": "object",
+              "description": "Icon object. Font Awesome: { \"value\": \"fas fa-star\", \"library\": \"fa-solid\" }. SVG: { \"value\": { \"id\": 123, \"url\": \"...\" }, \"library\": \"svg\" }."
+            },
+            "title_text": {
+              "type": "string",
+              "description": "Box title."
+            },
+            "description_text": {
+              "type": "string",
+              "description": "Box description."
+            },
+            "view": {
+              "type": "string",
+              "enum": [
+                "default",
+                "stacked",
+                "framed"
+              ],
+              "description": "Icon view mode."
+            },
+            "shape": {
+              "type": "string",
+              "enum": [
+                "circle",
+                "square"
+              ],
+              "description": "Icon shape."
+            },
+            "title_size": {
+              "type": "string",
+              "enum": [
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6",
+                "div",
+                "span",
+                "p"
+              ],
+              "description": "Title HTML tag. Default: h3."
+            },
+            "link": {
+              "type": "object",
+              "description": "Link: {url, is_external, nofollow}."
+            },
+            "title_color": {
+              "type": "string",
+              "description": "Title color (hex/rgba)."
+            },
+            "description_color": {
+              "type": "string",
+              "description": "Description color (hex/rgba)."
+            },
+            "primary_color": {
+              "type": "string",
+              "description": "Icon primary color."
+            },
+            "secondary_color": {
+              "type": "string",
+              "description": "Icon secondary/background color."
+            },
+            "hover_primary_color": {
+              "type": "string",
+              "description": "Hover icon color."
+            },
+            "hover_secondary_color": {
+              "type": "string",
+              "description": "Hover icon background color."
+            },
+            "hover_animation": {
+              "type": "string",
+              "description": "Hover animation."
+            },
+            "icon_space": {
+              "type": "object",
+              "description": "Space between icon and content: {size, unit}."
+            },
+            "icon_size": {
+              "type": "object",
+              "description": "Icon size: {size, unit}."
+            },
+            "title_bottom_space": {
+              "type": "object",
+              "description": "Space below title: {size, unit}."
+            },
+            "title_typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable title typography."
+            },
+            "title_typography_font_family": {
+              "type": "string",
+              "description": "Title font family."
+            },
+            "title_typography_font_size": {
+              "type": "object",
+              "description": "Title font size: {size, unit}."
+            },
+            "title_typography_font_weight": {
+              "type": "string",
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900",
+                "normal",
+                "bold"
+              ],
+              "description": "Title font weight."
+            },
+            "description_typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable description typography."
+            },
+            "description_typography_font_family": {
+              "type": "string",
+              "description": "Description font family."
+            },
+            "description_typography_font_size": {
+              "type": "object",
+              "description": "Description font size: {size, unit}."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "title_text"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Icon Box",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-accordion",
+        "title": "Add Accordion",
+        "description": "Adds an accordion widget. Supports title/content colors, background, border, typography (set title_typography_typography=custom), spacing, icon color, and FAQ schema. Accepts responsive suffixes and advanced controls.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "tabs": {
+              "type": "array",
+              "description": "Array of accordion items with tab_title and tab_content.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tab_title": {
+                    "type": "string"
+                  },
+                  "tab_content": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "selected_icon": {
+              "type": "object",
+              "description": "Icon when collapsed. Default: fas fa-plus."
+            },
+            "selected_active_icon": {
+              "type": "object",
+              "description": "Icon when expanded. Default: fas fa-minus."
+            },
+            "title_html_tag": {
+              "type": "string",
+              "enum": [
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6",
+                "div"
+              ],
+              "description": "Title HTML tag. Default: div."
+            },
+            "faq_schema": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Enable FAQ schema markup."
+            },
+            "title_color": {
+              "type": "string",
+              "description": "Title text color."
+            },
+            "title_background": {
+              "type": "string",
+              "description": "Title background color."
+            },
+            "tab_active_color": {
+              "type": "string",
+              "description": "Active title text color."
+            },
+            "tab_active_background": {
+              "type": "string",
+              "description": "Active title background color."
+            },
+            "title_padding": {
+              "type": "object",
+              "description": "Title padding: {top, right, bottom, left, unit, isLinked}."
+            },
+            "icon_color": {
+              "type": "string",
+              "description": "Icon color."
+            },
+            "icon_active_color": {
+              "type": "string",
+              "description": "Active icon color."
+            },
+            "icon_space": {
+              "type": "object",
+              "description": "Space between icon and title: {size, unit}."
+            },
+            "content_color": {
+              "type": "string",
+              "description": "Content text color."
+            },
+            "content_background_color": {
+              "type": "string",
+              "description": "Content background color."
+            },
+            "content_padding": {
+              "type": "object",
+              "description": "Content padding: {top, right, bottom, left, unit, isLinked}."
+            },
+            "border_width": {
+              "type": "object",
+              "description": "Item border width: {size, unit}."
+            },
+            "border_color": {
+              "type": "string",
+              "description": "Item border color."
+            },
+            "title_typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable title typography."
+            },
+            "title_typography_font_family": {
+              "type": "string",
+              "description": "Title font family."
+            },
+            "title_typography_font_size": {
+              "type": "object",
+              "description": "Title font size: {size, unit}."
+            },
+            "title_typography_font_weight": {
+              "type": "string",
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900",
+                "normal",
+                "bold"
+              ],
+              "description": "Title font weight."
+            },
+            "content_typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable content typography."
+            },
+            "content_typography_font_family": {
+              "type": "string",
+              "description": "Content font family."
+            },
+            "content_typography_font_size": {
+              "type": "object",
+              "description": "Content font size: {size, unit}."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "tabs"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Accordion",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-alert",
+        "title": "Add Alert",
+        "description": "Adds an alert/notice widget with type, title, and description.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "alert_type": {
+              "type": "string",
+              "enum": [
+                "info",
+                "success",
+                "warning",
+                "danger"
+              ],
+              "description": "Alert type. Default: info."
+            },
+            "alert_title": {
+              "type": "string",
+              "description": "Alert title."
+            },
+            "alert_description": {
+              "type": "string",
+              "description": "Alert description/content."
+            },
+            "show_dismiss": {
+              "type": "string",
+              "enum": [
+                "show"
+              ],
+              "description": "Show dismiss button. Default: show."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "alert_title"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Alert",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-counter",
+        "title": "Add Counter",
+        "description": "Adds an animated counter widget that counts up to a number.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "starting_number": {
+              "type": "integer",
+              "description": "Start value. Default: 0."
+            },
+            "ending_number": {
+              "type": "integer",
+              "description": "End value. Default: 100."
+            },
+            "prefix": {
+              "type": "string",
+              "description": "Text before number (e.g. \"$\")."
+            },
+            "suffix": {
+              "type": "string",
+              "description": "Text after number (e.g. \"%\", \"+\")."
+            },
+            "duration": {
+              "type": "integer",
+              "description": "Animation duration in ms. Default: 2000."
+            },
+            "thousand_separator": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Show thousand separators."
+            },
+            "title": {
+              "type": "string",
+              "description": "Counter label/title."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "ending_number"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Counter",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-google-maps",
+        "title": "Add Google Maps",
+        "description": "Adds an embedded Google Maps widget with address, zoom, and height.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "address": {
+              "type": "string",
+              "description": "Location address or search query."
+            },
+            "zoom": {
+              "type": "object",
+              "description": "Zoom level: { \"size\": 10, \"unit\": \"px\" }. Range 1-20."
+            },
+            "height": {
+              "type": "object",
+              "description": "Map height: { \"size\": 300, \"unit\": \"px\" }."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "address"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Google Maps",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-icon-list",
+        "title": "Add Icon List",
+        "description": "Adds a list widget with icons and text. Great for feature lists, checklists, and contact info.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "icon_list": {
+              "type": "array",
+              "description": "Array of list items with text, selected_icon, and optional link.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  },
+                  "selected_icon": {
+                    "type": "object"
+                  },
+                  "link": {
+                    "type": "object"
+                  }
+                }
+              }
+            },
+            "view": {
+              "type": "string",
+              "enum": [
+                "traditional",
+                "inline"
+              ],
+              "description": "Layout: traditional (vertical) or inline. Default: traditional."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "icon_list"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Icon List",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-image-box",
+        "title": "Add Image Box",
+        "description": "Adds an image box widget with image, title, and description. Great for service cards.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "image": {
+              "type": "object",
+              "description": "Image object with url and optional id."
+            },
+            "title_text": {
+              "type": "string",
+              "description": "Box title."
+            },
+            "description_text": {
+              "type": "string",
+              "description": "Box description."
+            },
+            "link": {
+              "type": "object",
+              "description": "Link object with url key."
+            },
+            "title_size": {
+              "type": "string",
+              "enum": [
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6",
+                "div",
+                "span",
+                "p"
+              ],
+              "description": "Title HTML tag. Default: h3."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "title_text"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Image Box",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-image-carousel",
+        "title": "Add Image Carousel",
+        "description": "Adds a rotating image carousel/slider widget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "carousel": {
+              "type": "array",
+              "description": "Array of image objects with url and optional id.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "integer"
+                  }
+                }
+              }
+            },
+            "slides_to_show": {
+              "type": "string",
+              "enum": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10"
+              ],
+              "description": "Number of slides visible."
+            },
+            "navigation": {
+              "type": "string",
+              "enum": [
+                "both",
+                "arrows",
+                "dots",
+                "none"
+              ],
+              "description": "Navigation type. Default: both."
+            },
+            "autoplay": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Autoplay slides. Default: yes."
+            },
+            "autoplay_speed": {
+              "type": "integer",
+              "description": "Autoplay interval in ms. Default: 5000."
+            },
+            "infinite": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Infinite loop. Default: yes."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "carousel"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Image Carousel",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-progress",
+        "title": "Add Progress Bar",
+        "description": "Adds an animated progress bar widget with label and percentage.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "title": {
+              "type": "string",
+              "description": "Progress bar label."
+            },
+            "progress_type": {
+              "type": "string",
+              "enum": [
+                "info",
+                "success",
+                "warning",
+                "danger"
+              ],
+              "description": "Color preset type."
+            },
+            "percent": {
+              "type": "object",
+              "description": "Progress percentage: { \"size\": 50, \"unit\": \"%\" }."
+            },
+            "display_percentage": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Show percentage value. Default: yes."
+            },
+            "inner_text": {
+              "type": "string",
+              "description": "Text inside the progress bar."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Progress Bar",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-social-icons",
+        "title": "Add Social Icons",
+        "description": "Adds social media icon links. Great for headers and footers.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "social_icon_list": {
+              "type": "array",
+              "description": "Array of social items with social_icon and link.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "social_icon": {
+                    "type": "object",
+                    "description": "Icon: { \"value\": \"fab fa-facebook\", \"library\": \"fa-brands\" }."
+                  },
+                  "link": {
+                    "type": "object",
+                    "description": "URL object with url key."
+                  }
+                }
+              }
+            },
+            "shape": {
+              "type": "string",
+              "enum": [
+                "rounded",
+                "square",
+                "circle"
+              ],
+              "description": "Icon shape. Default: rounded."
+            },
+            "columns": {
+              "type": "integer",
+              "description": "Grid columns. 0 = auto."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ],
+              "description": "Alignment. Default: center."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "social_icon_list"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Social Icons",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-star-rating",
+        "title": "Add Star Rating",
+        "description": "Adds a star rating display widget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "rating_scale": {
+              "type": "string",
+              "enum": [
+                "5",
+                "10"
+              ],
+              "description": "Rating scale. Default: 5."
+            },
+            "rating": {
+              "type": "object",
+              "description": "Rating value: { \"size\": 5, \"unit\": \"px\" }. Step: 0.1."
+            },
+            "star_style": {
+              "type": "string",
+              "enum": [
+                "star_fontawesome",
+                "star_unicode"
+              ],
+              "description": "Star icon style."
+            },
+            "title": {
+              "type": "string",
+              "description": "Optional rating title."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Star Rating",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-tabs",
+        "title": "Add Tabs",
+        "description": "Adds a tabbed content widget with horizontal or vertical layout.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "tabs": {
+              "type": "array",
+              "description": "Array of tab items with tab_title and tab_content.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tab_title": {
+                    "type": "string"
+                  },
+                  "tab_content": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "type": {
+              "type": "string",
+              "enum": [
+                "horizontal",
+                "vertical"
+              ],
+              "description": "Tab layout direction. Default: horizontal."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "tabs"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Tabs",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-testimonial",
+        "title": "Add Testimonial",
+        "description": "Adds a testimonial widget with quote, author name, job title, and image.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "testimonial_content": {
+              "type": "string",
+              "description": "Testimonial/quote text."
+            },
+            "testimonial_image": {
+              "type": "object",
+              "description": "Author image object with url and optional id."
+            },
+            "testimonial_name": {
+              "type": "string",
+              "description": "Author name."
+            },
+            "testimonial_job": {
+              "type": "string",
+              "description": "Author job title/role."
+            },
+            "testimonial_image_position": {
+              "type": "string",
+              "enum": [
+                "aside",
+                "top"
+              ],
+              "description": "Image position. Default: aside."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "testimonial_content",
+            "testimonial_name"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Testimonial",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-toggle",
+        "title": "Add Toggle",
+        "description": "Adds a toggle widget (multiple items can be open). Supports title/content colors, background, border, typography (set title_typography_typography=custom), spacing, and icon color. Accepts responsive suffixes and advanced controls.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "tabs": {
+              "type": "array",
+              "description": "Array of toggle items with tab_title and tab_content.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "tab_title": {
+                    "type": "string"
+                  },
+                  "tab_content": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "selected_icon": {
+              "type": "object",
+              "description": "Icon when collapsed."
+            },
+            "selected_active_icon": {
+              "type": "object",
+              "description": "Icon when expanded."
+            },
+            "title_html_tag": {
+              "type": "string",
+              "enum": [
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6",
+                "div"
+              ],
+              "description": "Title HTML tag. Default: div."
+            },
+            "title_color": {
+              "type": "string",
+              "description": "Title text color."
+            },
+            "title_background": {
+              "type": "string",
+              "description": "Title background color."
+            },
+            "tab_active_color": {
+              "type": "string",
+              "description": "Active title text color."
+            },
+            "tab_active_background": {
+              "type": "string",
+              "description": "Active title background color."
+            },
+            "title_padding": {
+              "type": "object",
+              "description": "Title padding: {top, right, bottom, left, unit, isLinked}."
+            },
+            "icon_color": {
+              "type": "string",
+              "description": "Icon color."
+            },
+            "icon_active_color": {
+              "type": "string",
+              "description": "Active icon color."
+            },
+            "icon_space": {
+              "type": "object",
+              "description": "Space between icon and title: {size, unit}."
+            },
+            "content_color": {
+              "type": "string",
+              "description": "Content text color."
+            },
+            "content_background_color": {
+              "type": "string",
+              "description": "Content background color."
+            },
+            "content_padding": {
+              "type": "object",
+              "description": "Content padding: {top, right, bottom, left, unit, isLinked}."
+            },
+            "border_width": {
+              "type": "object",
+              "description": "Item border width: {size, unit}."
+            },
+            "border_color": {
+              "type": "string",
+              "description": "Item border color."
+            },
+            "title_typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable title typography."
+            },
+            "title_typography_font_family": {
+              "type": "string",
+              "description": "Title font family."
+            },
+            "title_typography_font_size": {
+              "type": "object",
+              "description": "Title font size: {size, unit}."
+            },
+            "title_typography_font_weight": {
+              "type": "string",
+              "enum": [
+                "100",
+                "200",
+                "300",
+                "400",
+                "500",
+                "600",
+                "700",
+                "800",
+                "900",
+                "normal",
+                "bold"
+              ],
+              "description": "Title font weight."
+            },
+            "content_typography_typography": {
+              "type": "string",
+              "description": "Set to \"custom\" to enable content typography."
+            },
+            "content_typography_font_family": {
+              "type": "string",
+              "description": "Content font family."
+            },
+            "content_typography_font_size": {
+              "type": "object",
+              "description": "Content font size: {size, unit}."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "tabs"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Toggle",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-html",
+        "title": "Add HTML",
+        "description": "Adds a custom HTML code widget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "html": {
+              "type": "string",
+              "description": "Custom HTML/code content."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "html"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add HTML",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-menu-anchor",
+        "title": "Add Menu Anchor",
+        "description": "Adds a menu anchor for one-page navigation.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "anchor": {
+              "type": "string",
+              "description": "The anchor ID (used in menu links as #id)."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "anchor"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Menu Anchor",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-shortcode",
+        "title": "Add Shortcode",
+        "description": "Adds a WordPress shortcode widget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "shortcode": {
+              "type": "string",
+              "description": "The shortcode to render, e.g. [contact-form-7 id=\"123\"]."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "shortcode"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Shortcode",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-rating",
+        "title": "Add Rating",
+        "description": "Adds a star/icon rating widget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "rating_scale": {
+              "type": "object",
+              "description": "Rating scale: { \"size\": 5, \"unit\": \"px\" }. Default 5."
+            },
+            "rating_value": {
+              "type": "number",
+              "description": "Rating value (e.g. 4.5)."
+            },
+            "rating_icon": {
+              "type": "object",
+              "description": "Icon object, e.g. { \"value\": \"eicon-star\", \"library\": \"eicons\" }."
+            },
+            "icon_alignment": {
+              "type": "string",
+              "enum": [
+                "start",
+                "center",
+                "end"
+              ],
+              "description": "Icon alignment."
+            },
+            "icon_size": {
+              "type": "object",
+              "description": "Icon size: { \"size\": 24, \"unit\": \"px\" }."
+            },
+            "icon_gap": {
+              "type": "object",
+              "description": "Space between icons: { \"size\": 5, \"unit\": \"px\" }."
+            },
+            "icon_color": {
+              "type": "string",
+              "description": "Marked icon color (hex)."
+            },
+            "icon_unmarked_color": {
+              "type": "string",
+              "description": "Unmarked icon color (hex)."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Rating",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-text-path",
+        "title": "Add Text Path",
+        "description": "Adds curved/path text widget.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "text": {
+              "type": "string",
+              "description": "The text content."
+            },
+            "path": {
+              "type": "string",
+              "enum": [
+                "wave",
+                "arc",
+                "circle",
+                "line",
+                "oval",
+                "spiral",
+                "custom"
+              ],
+              "description": "Path shape type. Default: wave."
+            },
+            "custom_path": {
+              "type": "object",
+              "description": "Custom SVG path object (when path=custom)."
+            },
+            "link": {
+              "type": "object",
+              "description": "Link object: { \"url\": \"...\", \"is_external\": true }."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ],
+              "description": "Text alignment."
+            },
+            "text_path_direction": {
+              "type": "string",
+              "enum": [
+                "rtl",
+                "ltr"
+              ],
+              "description": "Text direction."
+            },
+            "show_path": {
+              "type": "string",
+              "enum": [
+                "yes"
+              ],
+              "description": "Show the SVG path line."
+            },
+            "size": {
+              "type": "object",
+              "description": "Path size: { \"size\": 500, \"unit\": \"px\" }."
+            },
+            "rotation": {
+              "type": "object",
+              "description": "Rotation: { \"size\": 0, \"unit\": \"px\" }."
+            },
+            "start_point": {
+              "type": "object",
+              "description": "Starting point (%): { \"size\": 0, \"unit\": \"px\" }."
+            },
+            "text_color_normal": {
+              "type": "string",
+              "description": "Text color (hex)."
+            },
+            "text_color_hover": {
+              "type": "string",
+              "description": "Text hover color (hex)."
+            },
+            "stroke_color_normal": {
+              "type": "string",
+              "description": "Path stroke color (hex)."
+            },
+            "stroke_width_normal": {
+              "type": "object",
+              "description": "Path stroke width: { \"size\": 1, \"unit\": \"px\" }."
+            },
+            "text_typography_typography": {
+              "type": "string",
+              "description": "Set to \"yes\" for custom typography."
+            },
+            "text_typography_font_family": {
+              "type": "string",
+              "description": "Font family name."
+            },
+            "text_typography_font_size": {
+              "type": "object",
+              "description": "Font size: { \"size\": 20, \"unit\": \"px\" }."
+            },
+            "text_typography_font_weight": {
+              "type": "string",
+              "description": "Font weight (100-900, normal, bold)."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Text Path",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-save-as-template",
+        "title": "Save As Template",
+        "description": "Saves a page or a specific element as a reusable Elementor template.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The source post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "Specific element ID to save. Omit to save the entire page."
+            },
+            "title": {
+              "type": "string",
+              "description": "Template title."
+            },
+            "template_type": {
+              "type": "string",
+              "enum": [
+                "page",
+                "section",
+                "container"
+              ],
+              "description": "Template type. Default: page."
+            }
+          },
+          "required": [
+            "post_id",
+            "title"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "template_id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Save As Template",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-apply-template",
+        "title": "Apply Template",
+        "description": "Applies a saved Elementor template to a page at a given position, inserting its elements with fresh IDs.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The target post/page ID."
+            },
+            "template_id": {
+              "type": "integer",
+              "description": "The template post ID to apply."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container ID. Empty for top-level."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            }
+          },
+          "required": [
+            "post_id",
+            "template_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "elements_added": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Apply Template",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-update-global-colors",
+        "title": "Update Global Colors",
+        "description": "Updates the site-wide color palette in the Elementor kit. Provide an array of color objects with id, title, and color (hex).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "colors": {
+              "type": "array",
+              "description": "Array of color definitions.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Unique color ID (e.g. \"primary\")."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Human-readable title."
+                  },
+                  "color": {
+                    "type": "string",
+                    "description": "Color value in hex format (e.g. \"#FF5733\")."
+                  }
+                },
+                "required": [
+                  "_id",
+                  "title",
+                  "color"
+                ]
+              }
+            }
+          },
+          "required": [
+            "colors"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Update Global Colors",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-update-global-typography",
+        "title": "Update Global Typography",
+        "description": "Updates the site-wide typography settings in the Elementor kit.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "typography": {
+              "type": "array",
+              "description": "Array of typography definitions.",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "_id": {
+                    "type": "string",
+                    "description": "Unique typography ID (e.g. \"primary\")."
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Human-readable title."
+                  },
+                  "typography_font_family": {
+                    "type": "string",
+                    "description": "Font family name."
+                  },
+                  "typography_font_size": {
+                    "type": "object",
+                    "description": "Font size with size and unit."
+                  },
+                  "typography_font_weight": {
+                    "type": "string",
+                    "description": "Font weight (100-900, normal, bold)."
+                  },
+                  "typography_line_height": {
+                    "type": "object",
+                    "description": "Line height with size and unit."
+                  },
+                  "typography_letter_spacing": {
+                    "type": "object",
+                    "description": "Letter spacing with size and unit."
+                  }
+                },
+                "required": [
+                  "_id",
+                  "title"
+                ]
+              }
+            }
+          },
+          "required": [
+            "typography"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Update Global Typography",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-build-page",
+        "title": "Build Page",
+        "description": "Creates a complete Elementor page from a declarative structure in a single call. Supports nested containers and any widget types. IMPORTANT LAYOUT RULES: (1) For side-by-side columns, use a parent container with flex_direction=row — children are auto-set to content_width=full with equal percentage widths (e.g. 2 children = 50%, 3 = 33.33%). (2) NEVER set flex_wrap or _flex_size in settings — these cause layout overflow. The tool handles layout automatically. (3) Background colors: set background_background=classic and background_color=#hex on containers. (4) Background images: set background_background=classic, background_image={url,id}, background_size=cover. (5) Background overlay: background_overlay_background=classic, background_overlay_color=#hex, background_overlay_opacity={size:0.7,unit:px}. (6) Text alignment: text_align on text/heading widgets. (7) Use search-images and sideload-image tools to get real images before building.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "Page title."
+            },
+            "status": {
+              "type": "string",
+              "enum": [
+                "draft",
+                "publish"
+              ],
+              "description": "Post status. Default: draft."
+            },
+            "post_type": {
+              "type": "string",
+              "enum": [
+                "page",
+                "post"
+              ],
+              "description": "Post type. Default: page."
+            },
+            "page_settings": {
+              "type": "object",
+              "description": "Page-level Elementor settings (background, padding, etc.)."
+            },
+            "structure": {
+              "type": "array",
+              "description": "Declarative element tree. Each item has type (container|widget), settings, and optionally children (for containers) or widget_type (for widgets).",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "container",
+                      "widget"
+                    ]
+                  },
+                  "widget_type": {
+                    "type": "string"
+                  },
+                  "settings": {
+                    "type": "object"
+                  },
+                  "children": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  }
+                },
+                "required": [
+                  "type"
+                ]
+              }
+            }
+          },
+          "required": [
+            "title",
+            "structure"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "edit_url": {
+              "type": "string"
+            },
+            "preview_url": {
+              "type": "string"
+            },
+            "elements_created": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Build Page",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-search-images",
+        "title": "Search Images",
+        "description": "Searches Openverse (WordPress.org) for Creative Commons licensed images. Returns image URLs, thumbnails, licensing info, and attribution. Use the returned URLs with sideload-image or add-stock-image.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Search keywords (e.g. \"mountain landscape\", \"modern office\")."
+            },
+            "page": {
+              "type": "integer",
+              "description": "Page number. Default: 1."
+            },
+            "page_size": {
+              "type": "integer",
+              "description": "Results per page (1-20). Default: 5."
+            },
+            "license": {
+              "type": "string",
+              "enum": [
+                "by",
+                "by-sa",
+                "by-nc",
+                "cc0",
+                "pdm"
+              ],
+              "description": "Filter by Creative Commons license type."
+            },
+            "source": {
+              "type": "string",
+              "description": "Filter by source (e.g. \"flickr\", \"wikimedia\", \"wordpress\")."
+            },
+            "aspect_ratio": {
+              "type": "string",
+              "enum": [
+                "tall",
+                "wide",
+                "square"
+              ],
+              "description": "Filter by aspect ratio. Use \"wide\" for landscape images (recommended for hero banners, cards, and most page layouts). Use \"tall\" for portrait/sidebar images. Use \"square\" for avatars and thumbnails."
+            },
+            "size": {
+              "type": "string",
+              "enum": [
+                "small",
+                "medium",
+                "large"
+              ],
+              "description": "Filter by image size."
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "photograph",
+                "illustration",
+                "digitized_artwork"
+              ],
+              "description": "Filter by image category."
+            }
+          },
+          "required": [
+            "query"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "result_count": {
+              "type": "integer"
+            },
+            "page": {
+              "type": "integer"
+            },
+            "page_count": {
+              "type": "integer"
+            },
+            "results": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  },
+                  "thumbnail": {
+                    "type": "string"
+                  },
+                  "width": {
+                    "type": "integer"
+                  },
+                  "height": {
+                    "type": "integer"
+                  },
+                  "creator": {
+                    "type": "string"
+                  },
+                  "creator_url": {
+                    "type": "string"
+                  },
+                  "license": {
+                    "type": "string"
+                  },
+                  "license_url": {
+                    "type": "string"
+                  },
+                  "attribution": {
+                    "type": "string"
+                  },
+                  "source": {
+                    "type": "string"
+                  },
+                  "foreign_landing_url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "Search Images",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-sideload-image",
+        "title": "Sideload Image",
+        "description": "Downloads an external image URL into the WordPress Media Library and returns the local attachment ID and URL. Use this after search-images to import a chosen image.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The external image URL to download."
+            },
+            "title": {
+              "type": "string",
+              "description": "Attachment title. Falls back to the filename."
+            },
+            "alt_text": {
+              "type": "string",
+              "description": "Alt text for the image."
+            },
+            "caption": {
+              "type": "string",
+              "description": "Image caption."
+            },
+            "attribution": {
+              "type": "string",
+              "description": "Attribution text for Creative Commons images. Stored as the attachment caption/excerpt."
+            }
+          },
+          "required": [
+            "url"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "attachment_id": {
+              "type": "integer"
+            },
+            "url": {
+              "type": "string"
+            },
+            "title": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Sideload Image",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-stock-image",
+        "title": "Add Stock Image",
+        "description": "Searches Openverse for an image, downloads it to the Media Library, and adds it as an image widget to the page — all in one step. Defaults to landscape (wide) images for consistent layouts. Combines search-images + sideload-image + add-image.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "query": {
+              "type": "string",
+              "description": "Image search keywords (e.g. \"hero banner technology\", \"team photo office\")."
+            },
+            "index": {
+              "type": "integer",
+              "description": "Which search result to use (0 = best match). Default: 0."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position within parent. -1 = append (default)."
+            },
+            "image_size": {
+              "type": "string",
+              "enum": [
+                "thumbnail",
+                "medium",
+                "medium_large",
+                "large",
+                "full"
+              ],
+              "description": "Image size preset. Default: full."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "left",
+                "center",
+                "right"
+              ],
+              "description": "Image alignment."
+            },
+            "caption": {
+              "type": "string",
+              "description": "Caption override. Defaults to Openverse attribution."
+            },
+            "aspect_ratio": {
+              "type": "string",
+              "enum": [
+                "wide",
+                "tall",
+                "square",
+                "any"
+              ],
+              "description": "Image aspect ratio filter. Default: wide (landscape). Use \"wide\" for hero banners and card images, \"tall\" for sidebar/portrait, \"square\" for thumbnails, \"any\" for no filter."
+            },
+            "alt_text": {
+              "type": "string",
+              "description": "Alt text override. Defaults to the image title."
+            },
+            "link_to": {
+              "type": "string",
+              "enum": [
+                "none",
+                "file",
+                "custom"
+              ],
+              "description": "Link behavior. Default: none."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "query"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "attachment_id": {
+              "type": "integer"
+            },
+            "image_url": {
+              "type": "string"
+            },
+            "element_id": {
+              "type": "string"
+            },
+            "original_url": {
+              "type": "string"
+            },
+            "attribution": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Stock Image",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-upload-svg-icon",
+        "title": "Upload SVG Icon",
+        "description": "Uploads an SVG icon to the WordPress Media Library and returns an Elementor icon object ready to use with any widget that accepts icons (icon, icon-box, button, etc.). Accepts either an external SVG URL or raw SVG markup. The returned icon object has the format: { \"value\": { \"id\": 123, \"url\": \"...\" }, \"library\": \"svg\" }. Use this value for the selected_icon setting in icon/icon-box widgets, or the selected_icon setting in button widgets.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "svg_url": {
+              "type": "string",
+              "description": "External URL to an SVG file to download and import. Use this OR svg_content, not both."
+            },
+            "svg_content": {
+              "type": "string",
+              "description": "Raw SVG markup string (e.g. \"<svg viewBox='0 0 24 24'><path d='M12 ...'/></svg>\"). Use this OR svg_url, not both."
+            },
+            "title": {
+              "type": "string",
+              "description": "Title for the SVG in the Media Library. Falls back to filename or \"Custom SVG Icon\"."
+            }
+          }
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "attachment_id": {
+              "type": "integer"
+            },
+            "url": {
+              "type": "string"
+            },
+            "icon_object": {
+              "type": "object",
+              "description": "Ready-to-use Elementor icon object. Pass this directly as the selected_icon setting.",
+              "properties": {
+                "value": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer"
+                    },
+                    "url": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "library": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "annotations": {
+          "title": "Upload SVG Icon",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-custom-js",
+        "title": "Add Custom JavaScript",
+        "description": "Adds a custom JavaScript snippet to a page by inserting an HTML widget containing a <script> tag. Works with free Elementor (no Pro required). The JS code is automatically wrapped in <script> tags — do NOT include them yourself. Use wrap_dom_ready=true to wrap in a DOMContentLoaded listener. For site-wide JS, use add-code-snippet instead (requires Pro).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "js": {
+              "type": "string",
+              "description": "JavaScript code to inject. Do NOT include <script> tags — they are added automatically."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position within parent. -1 = append (default)."
+            },
+            "wrap_dom_ready": {
+              "type": "boolean",
+              "description": "Wrap the code in a DOMContentLoaded listener. Default: false."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "js"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            },
+            "post_id": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Custom JavaScript",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-widget",
+        "title": "Add Atomic Widget",
+        "description": "Adds any Elementor 4.0+ atomic widget to a container. Settings must use the $$type prop format. For simpler usage, prefer the convenience tools (add-atomic-heading, etc.).",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "widget_type": {
+              "type": "string",
+              "description": "Atomic widget type name (e.g. e-heading, e-button)."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Widget settings with $$type-wrapped values."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "widget_type"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic Widget",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-update-atomic-widget",
+        "title": "Update Atomic Widget",
+        "description": "Updates settings on an existing Elementor 4.0+ atomic widget. Performs a partial merge — only provided keys are changed.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "element_id": {
+              "type": "string",
+              "description": "The element ID to update."
+            },
+            "settings": {
+              "type": "object",
+              "description": "Partial settings to merge ($$type-wrapped values)."
+            }
+          },
+          "required": [
+            "post_id",
+            "element_id",
+            "settings"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Update Atomic Widget",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-heading",
+        "title": "Add Atomic Heading",
+        "description": "Adds an Elementor 4.0 atomic heading element. Accepts plain text and tag; $$type wrapping is handled automatically.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "title": {
+              "type": "string",
+              "description": "Heading text content."
+            },
+            "tag": {
+              "type": "string",
+              "enum": [
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6"
+              ],
+              "description": "HTML tag. Default: h2."
+            },
+            "link": {
+              "type": "string",
+              "description": "Optional URL to link the heading."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID for the element."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic Heading",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-paragraph",
+        "title": "Add Atomic Paragraph",
+        "description": "Adds an Elementor 4.0 atomic paragraph element.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "content": {
+              "type": "string",
+              "description": "Paragraph text content."
+            },
+            "link": {
+              "type": "string",
+              "description": "Optional URL to link the paragraph."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic Paragraph",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-button",
+        "title": "Add Atomic Button",
+        "description": "Adds an Elementor 4.0 atomic button element.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "text": {
+              "type": "string",
+              "description": "Button label text."
+            },
+            "link": {
+              "type": "string",
+              "description": "Button URL."
+            },
+            "target_blank": {
+              "type": "boolean",
+              "description": "Open in new tab."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic Button",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-image",
+        "title": "Add Atomic Image",
+        "description": "Adds an Elementor 4.0 atomic image element. Provide either image_id (from media library) or image_url.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "image_id": {
+              "type": "integer",
+              "description": "WordPress media library attachment ID."
+            },
+            "image_url": {
+              "type": "string",
+              "description": "Image URL (if not using media library)."
+            },
+            "alt": {
+              "type": "string",
+              "description": "Alt text for the image."
+            },
+            "link": {
+              "type": "string",
+              "description": "Optional link URL."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic Image",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-svg",
+        "title": "Add Atomic SVG",
+        "description": "Adds an Elementor 4.0 atomic SVG element.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "svg_id": {
+              "type": "integer",
+              "description": "WordPress media library SVG attachment ID."
+            },
+            "svg_url": {
+              "type": "string",
+              "description": "SVG URL (if not using media library)."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic SVG",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-youtube",
+        "title": "Add Atomic YouTube",
+        "description": "Adds an Elementor 4.0 atomic YouTube video element.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "video_url": {
+              "type": "string",
+              "description": "YouTube video URL."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id",
+            "video_url"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic YouTube",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-video",
+        "title": "Add Atomic Video",
+        "description": "Adds an Elementor 4.0 atomic self-hosted video element.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "video_url": {
+              "type": "string",
+              "description": "Self-hosted video URL."
+            },
+            "video_id": {
+              "type": "integer",
+              "description": "Media library video attachment ID."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic Video",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-atomic-divider",
+        "title": "Add Atomic Divider",
+        "description": "Adds an Elementor 4.0 atomic divider element.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent container element ID (e-flexbox or e-div-block)."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            }
+          },
+          "required": [
+            "post_id",
+            "parent_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Atomic Divider",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-flexbox",
+        "title": "Add Flexbox",
+        "description": "Adds an Elementor 4.0 flexbox container. Layout properties (direction, justify, align, gap) are applied as local styles automatically. Use this instead of add-container for Elementor 4.0+ sites.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent element ID. Empty for top-level."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "tag": {
+              "type": "string",
+              "enum": [
+                "div",
+                "header",
+                "section",
+                "article",
+                "aside",
+                "footer"
+              ],
+              "description": "HTML tag. Default: div."
+            },
+            "direction": {
+              "type": "string",
+              "enum": [
+                "row",
+                "column",
+                "row-reverse",
+                "column-reverse"
+              ],
+              "description": "Flex direction. Default: column."
+            },
+            "justify": {
+              "type": "string",
+              "enum": [
+                "flex-start",
+                "center",
+                "flex-end",
+                "space-between",
+                "space-around",
+                "space-evenly"
+              ],
+              "description": "Justify content."
+            },
+            "align": {
+              "type": "string",
+              "enum": [
+                "flex-start",
+                "center",
+                "flex-end",
+                "stretch",
+                "baseline"
+              ],
+              "description": "Align items."
+            },
+            "gap": {
+              "type": "number",
+              "description": "Gap between children (px by default)."
+            },
+            "gap_unit": {
+              "type": "string",
+              "enum": [
+                "px",
+                "em",
+                "rem",
+                "%",
+                "vw"
+              ],
+              "description": "Gap unit. Default: px."
+            },
+            "wrap": {
+              "type": "string",
+              "enum": [
+                "nowrap",
+                "wrap",
+                "wrap-reverse"
+              ],
+              "description": "Flex wrap."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            },
+            "padding": {
+              "type": "number",
+              "description": "Padding on all sides (px by default)."
+            },
+            "background_color": {
+              "type": "string",
+              "description": "Background color (hex/rgba)."
+            },
+            "min_height": {
+              "type": "number",
+              "description": "Minimum height (px by default)."
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            },
+            "post_id": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Flexbox",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-add-div-block",
+        "title": "Add Div Block",
+        "description": "Adds an Elementor 4.0 div-block container (block flow layout). Use for non-flex containers.",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "post_id": {
+              "type": "integer",
+              "description": "The post/page ID."
+            },
+            "parent_id": {
+              "type": "string",
+              "description": "Parent element ID. Empty for top-level."
+            },
+            "position": {
+              "type": "integer",
+              "description": "Insert position. -1 = append."
+            },
+            "tag": {
+              "type": "string",
+              "enum": [
+                "div",
+                "header",
+                "section",
+                "article",
+                "aside",
+                "footer"
+              ],
+              "description": "HTML tag. Default: div."
+            },
+            "css_id": {
+              "type": "string",
+              "description": "Optional CSS ID."
+            },
+            "padding": {
+              "type": "number",
+              "description": "Padding on all sides (px by default)."
+            },
+            "background_color": {
+              "type": "string",
+              "description": "Background color (hex/rgba)."
+            }
+          },
+          "required": [
+            "post_id"
+          ]
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "element_id": {
+              "type": "string"
+            },
+            "post_id": {
+              "type": "integer"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Add Div Block",
+          "readOnlyHint": false,
+          "destructiveHint": false,
+          "idempotentHint": false
+        }
+      },
+      {
+        "name": "elementor-mcp-detect-elementor-version",
+        "title": "Detect Elementor Version",
+        "description": "Returns the Elementor version and whether atomic elements (v4.0+) are supported. Call this first to decide whether to use legacy tools (add-heading, add-container) or atomic tools (add-atomic-heading, add-flexbox).",
+        "inputSchema": {
+          "type": "object"
+        },
+        "outputSchema": {
+          "type": "object",
+          "properties": {
+            "elementor_version": {
+              "type": "string"
+            },
+            "elementor_pro_version": {
+              "type": "string"
+            },
+            "supports_atomic": {
+              "type": "boolean"
+            },
+            "recommended_mode": {
+              "type": "string"
+            }
+          }
+        },
+        "annotations": {
+          "title": "Detect Elementor Version",
+          "readOnlyHint": true,
+          "destructiveHint": false,
+          "idempotentHint": true
+        }
+      }
+    ]
+  }
+}

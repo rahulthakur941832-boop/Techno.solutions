@@ -1,0 +1,134 @@
+{
+  "version": "0.4",
+  "title": "Techno-Solutions Blog List Page - Elementor Template",
+  "type": "page",
+  "content": [
+    {
+      "id": "blog_hero",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#06183B",
+        "padding": {
+          "unit": "px",
+          "top": "100",
+          "right": "0",
+          "bottom": "100",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "blog_hero_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "blog_hero_badge",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "LATEST INSIGHTS & ARTICLES",
+                "header_size": "div",
+                "align": "center",
+                "title_color": "#E5AF2B",
+                "typography_typography": "custom",
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "blog_hero_title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Techno-Solutions Blog",
+                "header_size": "h1",
+                "align": "center",
+                "title_color": "#FFFFFF",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 48
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blog_grid_section",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": {
+          "unit": "px",
+          "top": "80",
+          "right": "0",
+          "bottom": "80",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "blog_col_1",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "blog_post_1",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background-color: #F8F9FC; border: 1px solid #ECECEC; padding: 30px; border-radius: 20px; margin-bottom: 30px;'><span style='background-color: #E5AF2B; color: #0F2D63; font-weight: 700; font-size: 10px; padding: 4px 10px; border-radius: 12px; text-transform: uppercase;'>Digital Transformation</span><h3 style='font-family: \"Playfair Display\"; font-size: 20px; font-weight: 700; color: #1B1B1B; margin: 15px 0 10px 0;'>The Ultimate Guide to Digital Transformation in Delhi NCR</h3><p style='font-size: 13px; color: #5B6470; line-height: 1.6;'>How top organizations in Delhi, Noida, and Gurgaon are leveraging digital consulting services to modernize their corporate operations and transition seamlessly to secure cloud architectures.</p><a href='/blog/digital-transformation-delhi/' style='color: #0F2D63; font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 10px;'>Read Full Post →</a></div>"
+              }
+            },
+            {
+              "id": "blog_post_2",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background-color: #F8F9FC; border: 1px solid #ECECEC; padding: 30px; border-radius: 20px; margin-bottom: 30px;'><span style='background-color: #E5AF2B; color: #0F2D63; font-weight: 700; font-size: 10px; padding: 4px 10px; border-radius: 12px; text-transform: uppercase;'>Automation</span><h3 style='font-family: \"Playfair Display\"; font-size: 20px; font-weight: 700; color: #1B1B1B; margin: 15px 0 10px 0;'>How Business Automation Solutions Drive Efficiency for Indian SMEs</h3><p style='font-size: 13px; color: #5B6470; line-height: 1.6;'>Streamlining complex multi-department operations, eliminating manual bottlenecks, and integrating custom CRM and ERP integrations for zero-bottleneck workflows.</p><a href='/blog/business-automation-solutions-smes/' style='color: #0F2D63; font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 10px;'>Read Full Post →</a></div>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "blog_col_2",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "blog_post_3",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background-color: #F8F9FC; border: 1px solid #ECECEC; padding: 30px; border-radius: 20px; margin-bottom: 30px;'><span style='background-color: #E5AF2B; color: #0F2D63; font-weight: 700; font-size: 10px; padding: 4px 10px; border-radius: 12px; text-transform: uppercase;'>Artificial Intelligence</span><h3 style='font-family: \"Playfair Display\"; font-size: 20px; font-weight: 700; color: #1B1B1B; margin: 15px 0 10px 0;'>The Rise of Generative AI: Choosing an AI Solutions Provider in India</h3><p style='font-size: 13px; color: #5B6470; line-height: 1.6;'>Harnessing neural networks, custom LLMs, Agentic AI, and Gemini/ChatGPT APIs to achieve immense gains in workforce efficiency, support automation, and secure intelligence.</p><a href='/blog/ai-solutions-provider-india/' style='color: #0F2D63; font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 10px;'>Read Full Post →</a></div>"
+              }
+            },
+            {
+              "id": "blog_post_4",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background-color: #F8F9FC; border: 1px solid #ECECEC; padding: 30px; border-radius: 20px; margin-bottom: 30px;'><span style='background-color: #E5AF2B; color: #0F2D63; font-weight: 700; font-size: 10px; padding: 4px 10px; border-radius: 12px; text-transform: uppercase;'>Smart Systems & Solar</span><h3 style='font-family: \"Playfair Display\"; font-size: 20px; font-weight: 700; color: #1B1B1B; margin: 15px 0 10px 0;'>Smart Homes & Solar Energy: Navigating Intelligent, Eco-Friendly Living in Delhi</h3><p style='font-size: 13px; color: #5B6470; line-height: 1.6;'>Combining smart security, home automation networks, and high-conversion rooftop solar installations to achieve carbon-negative, secure residential living.</p><a href='/blog/smart-homes-solar-energy-delhi/' style='color: #0F2D63; font-weight: 700; font-size: 13px; text-decoration: none; display: inline-block; margin-top: 10px;'>Read Full Post →</a></div>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

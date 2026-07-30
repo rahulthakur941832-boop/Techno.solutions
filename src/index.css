@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Verdana", Geneva, sans-serif;
+  --font-serif: "Verdana", Geneva, sans-serif;
+  --font-mono: "Verdana", Geneva, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 12pt !important; /* Forces VERDANA 12 (12pt / 16px) across the entire website */
+    font-family: "Verdana", Geneva, sans-serif !important;
+  }
+  body {
+    font-family: "Verdana", Geneva, sans-serif !important;
+    color: #1b1b1b;
+    background-color: #ffffff;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom styles for luxurious glass effects and custom components */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(236, 236, 236, 0.5);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 45, 99, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(229, 175, 43, 0.15);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

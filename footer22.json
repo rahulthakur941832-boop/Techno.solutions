@@ -1,0 +1,201 @@
+{
+  "version": "0.4",
+  "title": "Footer 22 Template",
+  "type": "section",
+  "content": [
+    {
+      "id": "footer_section_22",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#06183B",
+        "padding": {
+          "unit": "px",
+          "top": "80",
+          "right": "40",
+          "bottom": "50",
+          "left": "40",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "footer_col1_22",
+          "elType": "column",
+          "settings": {
+            "_column_size": 40
+          },
+          "elements": [
+            {
+              "id": "footer_logo_22",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "TECHNO-SOLUTIONS<span style='color: #E5AF2B;'>.</span>",
+                "header_size": "h3",
+                "title_color": "#FFFFFF",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_weight": "800",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 24
+                }
+              }
+            },
+            {
+              "id": "footer_desc_22",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='color: #A0AEC0; font-size: 14px; margin-top: 15px;'>Leading technology consulting and strategic solutions provider in Delhi NCR. Empowering enterprises and SMEs with AI, Blockchain, Automation, Clean Energy, and Smart Infrastructure.</p><p style='color: #E5AF2B; font-weight: 700; font-size: 13px; margin-top: 15px;'>📍 Founder: Sanjeev Goel</p>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "footer_col2_22",
+          "elType": "column",
+          "settings": {
+            "_column_size": 30
+          },
+          "elements": [
+            {
+              "id": "footer_nav_title_22",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "QUICK LINKS",
+                "header_size": "h5",
+                "title_color": "#E5AF2B",
+                "typography_typography": "custom",
+                "typography_font_weight": "700",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 14
+                }
+              }
+            },
+            {
+              "id": "footer_nav_links_22",
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "icon_list": [
+                  {
+                    "text": "Home",
+                    "link": {
+                      "url": "/"
+                    }
+                  },
+                  {
+                    "text": "About Us",
+                    "link": {
+                      "url": "/about"
+                    }
+                  },
+                  {
+                    "text": "Our Services",
+                    "link": {
+                      "url": "/services"
+                    }
+                  },
+                  {
+                    "text": "Blog Insights",
+                    "link": {
+                      "url": "/blog"
+                    }
+                  },
+                  {
+                    "text": "Contact Us",
+                    "link": {
+                      "url": "/contact"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "id": "footer_col3_22",
+          "elType": "column",
+          "settings": {
+            "_column_size": 30
+          },
+          "elements": [
+            {
+              "id": "footer_contact_title_22",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "CONTACT DETAILS",
+                "header_size": "h5",
+                "title_color": "#E5AF2B",
+                "typography_typography": "custom",
+                "typography_font_weight": "700",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 14
+                }
+              }
+            },
+            {
+              "id": "footer_contact_details_22",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='color: #A0AEC0; font-size: 13px; line-height: 1.8; margin-top: 15px;'><p><strong>📞 Phone:</strong> +91 9811841782</p><p><strong>✉️ Email:</strong> info2sanjeev@gmail.com</p><p><strong>📍 Address:</strong> 218 AGCR Enclave, Near Karkardoma Metro Station, Delhi 110092 | India</p></div>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "footer_copyright_section_22",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#041029",
+        "padding": {
+          "unit": "px",
+          "top": "20",
+          "right": "40",
+          "bottom": "20",
+          "left": "40",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "footer_copy_col_22",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "footer_copy_text_22",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "© 2026 Techno-Solutions. All Rights Reserved. Designed for Maximum Efficiency.",
+                "header_size": "div",
+                "align": "center",
+                "title_color": "#718096",
+                "typography_typography": "custom",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 12
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

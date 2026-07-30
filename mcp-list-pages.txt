@@ -1,0 +1,122 @@
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"pages\":[{\"post_id\":8,\"title\":\"Home\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:22:24\"},{\"post_id\":69,\"title\":\"Smart Homes & Solar Energy: Navigating Intelligent, Eco-Friendly Living in Delhi\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:24\"},{\"post_id\":65,\"title\":\"The Rise of Generative AI: Choosing an AI Solutions Provider in India\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:22\"},{\"post_id\":61,\"title\":\"How Business Automation Solutions Drive Efficiency for Indian SMEs\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:21\"},{\"post_id\":57,\"title\":\"The Ultimate Guide to Digital Transformation in Delhi NCR\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:20\"},{\"post_id\":53,\"title\":\"Solar Panel Installation Services\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:18\"},{\"post_id\":49,\"title\":\"Smart Home Installation Services\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:17\"},{\"post_id\":45,\"title\":\"Blockchain & Crypto Solutions\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:15\"},{\"post_id\":41,\"title\":\"Artificial Intelligence Solutions\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:14\"},{\"post_id\":37,\"title\":\"Business Automation Solutions\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:12\"},{\"post_id\":33,\"title\":\"Digital Transformation Solutions\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:11\"},{\"post_id\":29,\"title\":\"Contact\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:09\"},{\"post_id\":25,\"title\":\"Blog\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:08\"},{\"post_id\":21,\"title\":\"About\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:06\"},{\"post_id\":17,\"title\":\"Services\",\"type\":\"page\",\"status\":\"publish\",\"modified\":\"2026-07-08 13:04:05\"}]}"
+      }
+    ],
+    "structuredContent": {
+      "pages": [
+        {
+          "post_id": 8,
+          "title": "Home",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:22:24"
+        },
+        {
+          "post_id": 69,
+          "title": "Smart Homes & Solar Energy: Navigating Intelligent, Eco-Friendly Living in Delhi",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:24"
+        },
+        {
+          "post_id": 65,
+          "title": "The Rise of Generative AI: Choosing an AI Solutions Provider in India",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:22"
+        },
+        {
+          "post_id": 61,
+          "title": "How Business Automation Solutions Drive Efficiency for Indian SMEs",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:21"
+        },
+        {
+          "post_id": 57,
+          "title": "The Ultimate Guide to Digital Transformation in Delhi NCR",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:20"
+        },
+        {
+          "post_id": 53,
+          "title": "Solar Panel Installation Services",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:18"
+        },
+        {
+          "post_id": 49,
+          "title": "Smart Home Installation Services",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:17"
+        },
+        {
+          "post_id": 45,
+          "title": "Blockchain & Crypto Solutions",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:15"
+        },
+        {
+          "post_id": 41,
+          "title": "Artificial Intelligence Solutions",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:14"
+        },
+        {
+          "post_id": 37,
+          "title": "Business Automation Solutions",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:12"
+        },
+        {
+          "post_id": 33,
+          "title": "Digital Transformation Solutions",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:11"
+        },
+        {
+          "post_id": 29,
+          "title": "Contact",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:09"
+        },
+        {
+          "post_id": 25,
+          "title": "Blog",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:08"
+        },
+        {
+          "post_id": 21,
+          "title": "About",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:06"
+        },
+        {
+          "post_id": 17,
+          "title": "Services",
+          "type": "page",
+          "status": "publish",
+          "modified": "2026-07-08 13:04:05"
+        }
+      ]
+    },
+    "isError": false
+  }
+}

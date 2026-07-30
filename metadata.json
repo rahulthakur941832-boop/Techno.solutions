@@ -1,0 +1,8 @@
+{
+  "name": "Copy of Enterprise Landing Page",
+  "description": "A premium corporate and technology landing page with interactive elements, responsive bento grids, process timelines, and a high-fidelity visual design compatible with Elementor-style modular containers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

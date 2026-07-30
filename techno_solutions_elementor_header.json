@@ -1,0 +1,144 @@
+{
+  "version": "0.4",
+  "title": "Techno-Solutions Header - Elementor Template",
+  "type": "section",
+  "content": [
+    {
+      "id": "header_section",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": {
+          "unit": "px",
+          "top": "20",
+          "right": "40",
+          "bottom": "20",
+          "left": "40",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "header_logo_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 30
+          },
+          "elements": [
+            {
+              "id": "header_logo",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "TECHNO-SOLUTIONS<span style='color: #E5AF2B;'>.</span>",
+                "header_size": "h3",
+                "align": "left",
+                "title_color": "#0F2D63",
+                "link": {
+                  "url": "/"
+                },
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_weight": "800",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 22
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "header_nav_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "header_menu",
+              "elType": "widget",
+              "widgetType": "icon-list",
+              "settings": {
+                "view": "inline",
+                "icon_list": [
+                  {
+                    "text": "Home",
+                    "link": {
+                      "url": "/"
+                    }
+                  },
+                  {
+                    "text": "About Us",
+                    "link": {
+                      "url": "/about"
+                    }
+                  },
+                  {
+                    "text": "Services",
+                    "link": {
+                      "url": "/services"
+                    }
+                  },
+                  {
+                    "text": "Blog",
+                    "link": {
+                      "url": "/blog"
+                    }
+                  },
+                  {
+                    "text": "Contact Us",
+                    "link": {
+                      "url": "/contact"
+                    }
+                  }
+                ],
+                "typography_typography": "custom",
+                "typography_font_weight": "600",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 14
+                }
+              }
+            }
+          ]
+        },
+        {
+          "id": "header_cta_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 20
+          },
+          "elements": [
+            {
+              "id": "header_cta_btn",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "Book Consultation",
+                "align": "right",
+                "link": {
+                  "url": "/contact"
+                },
+                "background_color": "#0F2D63",
+                "text_color": "#FFFFFF",
+                "typography_typography": "custom",
+                "typography_font_weight": "700",
+                "border_radius": {
+                  "unit": "px",
+                  "top": "30",
+                  "right": "30",
+                  "bottom": "30",
+                  "left": "30",
+                  "isLinked": true
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

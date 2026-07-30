@@ -1,0 +1,194 @@
+{
+  "version": "0.4",
+  "title": "Techno-Solutions Contact Us Page - Elementor Template",
+  "type": "page",
+  "content": [
+    {
+      "id": "contact_hero",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#06183B",
+        "padding": {
+          "unit": "px",
+          "top": "100",
+          "right": "0",
+          "bottom": "100",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "contact_hero_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "contact_hero_badge",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "GET IN TOUCH TODAY",
+                "header_size": "div",
+                "align": "center",
+                "title_color": "#E5AF2B",
+                "typography_typography": "custom",
+                "typography_font_weight": "700"
+              }
+            },
+            {
+              "id": "contact_hero_title",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Contact Techno-Solutions",
+                "header_size": "h1",
+                "align": "center",
+                "title_color": "#FFFFFF",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 48
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact_content_section",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#FFFFFF",
+        "padding": {
+          "unit": "px",
+          "top": "80",
+          "right": "0",
+          "bottom": "80",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "contact_col_left",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "contact_details_heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Direct Contact Parameters",
+                "header_size": "h2",
+                "title_color": "#0F2D63",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 32
+                }
+              }
+            },
+            {
+              "id": "contact_details_text",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p style='font-size: 15px; color: #5B6470;'>Have a complex technology problem? Want to transition your factory to solar, automate your company's CRM workflow, or install a secure biometric smart network in your home? Reach out directly to our Founder & Chief Consultant Sanjeev Goel.</p>"
+              }
+            },
+            {
+              "id": "contact_details_card",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background-color: #F8F9FC; border: 1px solid #ECECEC; padding: 30px; border-radius: 16px; margin-top: 25px;'><h4 style='margin: 0 0 15px 0; font-family: \"Playfair Display\"; font-size: 18px; color: #1B1B1B;'>Contact Details</h4><div style='font-size: 14px; color: #5B6470; line-height: 1.8;'><p style='margin: 8px 0;'><strong>👤 Chief Consultant:</strong> Sanjeev Goel</p><p style='margin: 8px 0;'><strong>📞 Phone Number:</strong> +91 9811841782</p><p style='margin: 8px 0;'><strong>✉️ Email Address:</strong> info2sanjeev@gmail.com</p><p style='margin: 8px 0;'><strong>📍 Head Office:</strong> 218 AGCR Enclave, Near Karkardoma Metro Station, Delhi 110092 | India</p></div></div>"
+              }
+            }
+          ]
+        },
+        {
+          "id": "contact_col_right",
+          "elType": "column",
+          "settings": {
+            "_column_size": 50
+          },
+          "elements": [
+            {
+              "id": "contact_form_heading",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "Book a Free Consultation",
+                "header_size": "h3",
+                "title_color": "#1B1B1B",
+                "typography_typography": "custom",
+                "typography_font_family": "Playfair Display",
+                "typography_font_size": {
+                  "unit": "px",
+                  "size": 24
+                }
+              }
+            },
+            {
+              "id": "contact_form_widget",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='background-color: #FFFFFF; border: 1px solid #ECECEC; padding: 30px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); margin-top: 15px;'><form style='display: flex; flex-direction: column; gap: 15px;'><input type='text' placeholder='Your Full Name' style='padding: 12px; border: 1px solid #ECECEC; border-radius: 8px;' /><input type='email' placeholder='Your Email Address' style='padding: 12px; border: 1px solid #ECECEC; border-radius: 8px;' /><input type='text' placeholder='Subject' style='padding: 12px; border: 1px solid #ECECEC; border-radius: 8px;' /><textarea placeholder='How can we help your business?' rows='4' style='padding: 12px; border: 1px solid #ECECEC; border-radius: 8px; resize: none;'></textarea><button type='button' style='background-color: #0F2D63; color: #FFFFFF; font-weight: 700; padding: 14px; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.2s;'>Book Now</button></form></div>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "contact_map_section",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#F8F9FC",
+        "padding": {
+          "unit": "px",
+          "top": "50",
+          "right": "0",
+          "bottom": "50",
+          "left": "0",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "contact_map_col",
+          "elType": "column",
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "contact_map_iframe",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<div style='width: 100%; height: 400px; border-radius: 16px; overflow: hidden; border: 1px solid #ECECEC;'><iframe src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.4447477610057!2d77.29177197621434!3d28.646399083321553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfb6389f4b39b%3A0xe5a3cf535b91b8d5!2s218%2C%20AGCR%20Enclave%20Rd%2C%20AGCR%20Enclave%2C%20Anand%20Vihar%2C%20Delhi%2C%20110092!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin' width='100%' height='100%' style='border:0;' allowfullscreen='' loading='lazy' referrerpolicy='no-referrer-when-downgrade'></iframe></div>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
