@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { HashRouter, Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   FileText,
@@ -37,8 +37,9 @@ function AdminPortalInner({ token, username, onLogout }: AdminPortalInnerProps) 
   const navigate = useNavigate();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
-  // Derives current active tab from Hash route (e.g. "/blogs" -> "blogs")
-  const currentTab = location.pathname.replace(/^\//, "") || "dashboard";
+  // Derives current active tab from route (e.g. "/admin/blogs" -> "blogs")
+  const pathParts = location.pathname.split("/").filter(Boolean);
+  const currentTab = pathParts.length > 1 ? pathParts[1] : "blogs";
 
   const navItems = [
     { id: "blogs", label: "Blog Posts & Studio", icon: FileText },
@@ -69,7 +70,7 @@ function AdminPortalInner({ token, username, onLogout }: AdminPortalInnerProps) 
               return (
                 <button
                   key={item.id}
-                  onClick={() => navigate(`/${item.id}`)}
+                  onClick={() => navigate(`/admin/${item.id}`)}
                   className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
                     isActive
                       ? "bg-[#0F2D63] text-white shadow-md border border-white/10"
@@ -131,7 +132,7 @@ function AdminPortalInner({ token, username, onLogout }: AdminPortalInnerProps) 
               <button
                 key={item.id}
                 onClick={() => {
-                  navigate(`/${item.id}`);
+                  navigate(`/admin/${item.id}`);
                   setMobileNavOpen(false);
                 }}
                 className={`w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold ${
@@ -186,13 +187,13 @@ function AdminPortalInner({ token, username, onLogout }: AdminPortalInnerProps) 
           </div>
         </header>
 
-        {/* Dynamic Sub-Routed Body using HashRouter */}
+        {/* Dynamic Sub-Routed Body */}
         <main className="p-4 md:p-8 flex-1 max-w-7xl w-full mx-auto">
           <Routes>
-            <Route path="/" element={<Navigate to="/blogs" replace />} />
-            <Route path="/blogs" element={<BlogManager token={token} />} />
-            <Route path="/contacts" element={<ContactManager token={token} />} />
-            <Route path="*" element={<Navigate to="/blogs" replace />} />
+            <Route path="/" element={<Navigate to="blogs" replace />} />
+            <Route path="blogs" element={<BlogManager token={token} />} />
+            <Route path="contacts" element={<ContactManager token={token} />} />
+            <Route path="*" element={<Navigate to="blogs" replace />} />
           </Routes>
         </main>
       </div>
@@ -247,9 +248,7 @@ export default function AdminPage() {
       {!token ? (
         <AdminLogin onLoginSuccess={handleLoginSuccess} />
       ) : (
-        <HashRouter>
-          <AdminPortalInner token={token} username={username} onLogout={handleLogout} />
-        </HashRouter>
+        <AdminPortalInner token={token} username={username} onLogout={handleLogout} />
       )}
     </AdminShadowScope>
   );
