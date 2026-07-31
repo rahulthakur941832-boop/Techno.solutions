@@ -38,9 +38,6 @@ export default function ContactManager({ token }: ContactManagerProps) {
   const fetchContacts = async () => {
     setLoading(true);
     try {
-      const local = getStoredContacts();
-      setContacts(local);
-
       const query = new URLSearchParams({
         search: searchTerm,
         status: statusFilter,
@@ -48,30 +45,19 @@ export default function ContactManager({ token }: ContactManagerProps) {
       const res = await fetch(`/api/admin/contacts?${query.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      let data: any = {};
-      try {
+      if (res.ok) {
         const text = await res.text();
-        data = text ? JSON.parse(text) : {};
-      } catch {
-        data = {};
-      }
-
-      if (data && Array.isArray(data.contacts) && data.contacts.length > 0) {
-        const serverContacts = data.contacts;
-        const mergedMap = new Map<string, StoredContact>();
-        local.forEach((c) => mergedMap.set(c.id, c));
-        serverContacts.forEach((sc: any) => {
-          if (!mergedMap.has(sc.id)) {
-            mergedMap.set(sc.id, sc);
-          }
-        });
-        const mergedList = Array.from(mergedMap.values());
-        saveStoredContacts(mergedList);
-        setContacts(mergedList);
+        const data = text ? JSON.parse(text) : null;
+        if (data && Array.isArray(data.contacts)) {
+          saveStoredContacts(data.contacts);
+          setContacts(data.contacts);
+          return;
+        }
       }
     } catch (err) {
-      console.warn("Backend fetch contacts notice (using persistent local storage):", err);
+      console.warn("Backend fetch contacts notice (using local storage):", err);
     } finally {
+      setContacts(getStoredContacts());
       setLoading(false);
     }
   };
@@ -88,40 +74,42 @@ export default function ContactManager({ token }: ContactManagerProps) {
         setSelectedContact({ ...selectedContact, status: newStatus });
       }
 
-      // Best-effort server sync
-      fetch(`/api/admin/contacts/${id}`, {
+      await fetch(`/api/admin/contacts/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({ status: newStatus }),
-      }).catch((e) => console.warn("Backend status update notice:", e));
+      });
 
-      setContacts(getStoredContacts());
+      await fetchContacts();
     } catch (err) {
       console.error("Failed to update status:", err);
+      setContacts(getStoredContacts());
     }
   };
 
   const handleDelete = async () => {
     if (!deleteId) return;
     try {
-      deleteStoredContact(deleteId);
-
-      // Best-effort server delete
-      fetch(`/api/admin/contacts/${deleteId}`, {
+      await fetch(`/api/admin/contacts/${deleteId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
-      }).catch((e) => console.warn("Backend delete notice:", e));
+      });
+
+      deleteStoredContact(deleteId);
 
       if (selectedContact && selectedContact.id === deleteId) {
         setSelectedContact(null);
       }
       setDeleteId(null);
-      setContacts(getStoredContacts());
+      await fetchContacts();
     } catch (err) {
       console.error("Error deleting contact lead:", err);
+      deleteStoredContact(deleteId);
+      setDeleteId(null);
+      setContacts(getStoredContacts());
     }
   };
 

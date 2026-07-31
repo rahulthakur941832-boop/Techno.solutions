@@ -39,11 +39,17 @@ function AdminPortalInner({ token, username, onLogout }: AdminPortalInnerProps) 
 
   // Derives current active tab from route (e.g. "/admin/blogs" -> "blogs")
   const pathParts = location.pathname.split("/").filter(Boolean);
-  const currentTab = pathParts.length > 1 ? pathParts[1] : "blogs";
+  const currentTab = pathParts.length > 1 ? pathParts[1] : "dashboard";
 
   const navItems = [
+    { id: "dashboard", label: "Overview & Dashboard", icon: LayoutDashboard },
     { id: "blogs", label: "Blog Posts & Studio", icon: FileText },
     { id: "contacts", label: "Contact Inquiries", icon: Mail },
+    { id: "media", label: "Media Manager", icon: ImageIcon },
+    { id: "homepage", label: "Homepage Editor", icon: Layout },
+    { id: "site", label: "Site Settings", icon: Settings },
+    { id: "seo", label: "SEO & Meta Tags", icon: Globe },
+    { id: "security", label: "Security & Password", icon: ShieldCheck },
   ];
 
   return (
@@ -190,10 +196,19 @@ function AdminPortalInner({ token, username, onLogout }: AdminPortalInnerProps) 
         {/* Dynamic Sub-Routed Body */}
         <main className="p-4 md:p-8 flex-1 max-w-7xl w-full mx-auto">
           <Routes>
-            <Route path="/" element={<Navigate to="blogs" replace />} />
+            <Route path="/" element={<Navigate to="dashboard" replace />} />
+            <Route
+              path="dashboard"
+              element={<AdminDashboard token={token} onNavigateTab={(tab) => navigate(`/admin/${tab}`)} />}
+            />
             <Route path="blogs" element={<BlogManager token={token} />} />
             <Route path="contacts" element={<ContactManager token={token} />} />
-            <Route path="*" element={<Navigate to="blogs" replace />} />
+            <Route path="media" element={<MediaManager token={token} />} />
+            <Route path="homepage" element={<HomepageContentManager token={token} />} />
+            <Route path="site" element={<SiteSettingsManager token={token} />} />
+            <Route path="seo" element={<SeoSettingsManager token={token} />} />
+            <Route path="security" element={<SecurityManager token={token} username={username} />} />
+            <Route path="*" element={<Navigate to="dashboard" replace />} />
           </Routes>
         </main>
       </div>

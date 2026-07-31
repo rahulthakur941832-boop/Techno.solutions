@@ -27,7 +27,20 @@ export default function ContactPage() {
     setErrorMessage("");
 
     try {
-      // 1. Save locally to persistent storage with validation read-back check
+      // 1. Send to backend server endpoint first to persist in server store
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          serviceInterested: formData.serviceInterested,
+          message: formData.message,
+        }),
+      });
+
+      // 2. Also save locally as a backup
       addContactSubmission({
         name: formData.name,
         email: formData.email,
@@ -36,27 +49,25 @@ export default function ContactPage() {
         message: formData.message,
       });
 
-      // 2. Send to backend server endpoint
-      try {
-        await fetch("/api/contact", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            serviceInterested: formData.serviceInterested,
-            message: formData.message,
-          }),
-        });
-      } catch (backendErr) {
-        console.warn("Backend email dispatch notice (saved locally):", backendErr);
+      if (!res.ok) {
+        console.warn("Backend API response warning, saved locally.");
       }
 
       setSubmitted(true);
     } catch (err: any) {
       console.error("Contact form submission error:", err);
-      setErrorMessage(err?.message || "Failed to validate and save submission.");
+      try {
+        addContactSubmission({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          service: formData.serviceInterested,
+          message: formData.message,
+        });
+        setSubmitted(true);
+      } catch (localErr: any) {
+        setErrorMessage(localErr?.message || "Failed to validate and save submission.");
+      }
     } finally {
       setLoading(false);
     }

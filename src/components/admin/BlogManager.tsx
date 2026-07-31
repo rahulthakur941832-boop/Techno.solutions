@@ -74,9 +74,6 @@ export default function BlogManager({ token }: BlogManagerProps) {
   const fetchBlogs = async () => {
     setLoading(true);
     try {
-      const localBlogs = getStoredBlogs();
-      setBlogs(localBlogs);
-
       const query = new URLSearchParams({
         search: searchTerm,
         status: statusFilter,
@@ -85,34 +82,19 @@ export default function BlogManager({ token }: BlogManagerProps) {
       const res = await fetch(`/api/admin/blogs?${query.toString()}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      let data: any = {};
-      try {
+      if (res.ok) {
         const text = await res.text();
-        data = text ? JSON.parse(text) : {};
-      } catch {
-        data = {};
-      }
-      if (data && Array.isArray(data.blogs) && data.blogs.length > 0) {
-        // Sync server blogs with local storage
-        const serverBlogs = data.blogs;
-        const mergedMap = new Map<string, StoredBlog>();
-        
-        // Put local blogs first
-        localBlogs.forEach((b) => mergedMap.set(b.id, b));
-        // Add server blogs if not present locally
-        serverBlogs.forEach((sb: any) => {
-          if (!mergedMap.has(sb.id)) {
-            mergedMap.set(sb.id, sb);
-          }
-        });
-
-        const mergedList = Array.from(mergedMap.values());
-        saveStoredBlogs(mergedList);
-        setBlogs(mergedList);
+        const data = text ? JSON.parse(text) : null;
+        if (data && Array.isArray(data.blogs)) {
+          saveStoredBlogs(data.blogs);
+          setBlogs(data.blogs);
+          return;
+        }
       }
     } catch (err) {
-      console.warn("Backend fetch blogs notice (using persistent local storage):", err);
+      console.warn("Backend fetch blogs notice (using local storage):", err);
     } finally {
+      setBlogs(getStoredBlogs());
       setLoading(false);
     }
   };
@@ -200,32 +182,37 @@ export default function BlogManager({ token }: BlogManagerProps) {
     };
 
     try {
-      // 1. Save and validate persistence step locally (with write verification read-back)
-      const savedBlog = saveOrUpdateBlog(payload);
+      const url = editingBlogId ? `/api/admin/blogs/${editingBlogId}` : "/api/admin/blogs";
+      const method = editingBlogId ? "PUT" : "POST";
 
-      // 2. Best-effort async sync to backend API
-      try {
-        const url = editingBlogId ? `/api/admin/blogs/${editingBlogId}` : "/api/admin/blogs";
-        const method = editingBlogId ? "PUT" : "POST";
+      const response = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
 
-        await fetch(url, {
-          method,
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(payload),
-        });
-      } catch (backendErr) {
-        console.warn("Backend API sync notice (persisted locally):", backendErr);
+      if (response.ok) {
+        const text = await response.text();
+        const data = text ? JSON.parse(text) : null;
+        if (data && data.success && data.blog) {
+          saveOrUpdateBlog(data.blog);
+        } else {
+          saveOrUpdateBlog(payload);
+        }
+      } else {
+        saveOrUpdateBlog(payload);
       }
 
-      // 3. Update UI state only after persistence validation succeeds
-      setBlogs(getStoredBlogs());
+      await fetchBlogs();
       setIsFormOpen(false);
     } catch (err: any) {
-      console.error("Blog save validation/persistence error:", err);
-      setErrorMsg(err.message || "Failed to validate and write blog post to storage.");
+      console.error("Blog save error:", err);
+      saveOrUpdateBlog(payload);
+      setBlogs(getStoredBlogs());
+      setIsFormOpen(false);
     } finally {
       setSaving(false);
     }
@@ -234,20 +221,19 @@ export default function BlogManager({ token }: BlogManagerProps) {
   const handleDelete = async () => {
     if (!deleteBlogId) return;
     try {
-      // Delete from persistent local storage with validation check
-      deleteStoredBlog(deleteBlogId);
-
-      // Async backend call
-      fetch(`/api/admin/blogs/${deleteBlogId}`, {
+      await fetch(`/api/admin/blogs/${deleteBlogId}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
-      }).catch((err) => console.warn("Backend delete notice:", err));
+      });
 
+      deleteStoredBlog(deleteBlogId);
       setDeleteBlogId(null);
-      setBlogs(getStoredBlogs());
+      await fetchBlogs();
     } catch (err: any) {
       console.error("Error deleting blog:", err);
-      setErrorMsg(err.message || "Failed to remove blog post.");
+      deleteStoredBlog(deleteBlogId);
+      setDeleteBlogId(null);
+      setBlogs(getStoredBlogs());
     }
   };
 
